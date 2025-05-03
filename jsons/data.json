@@ -1,0 +1,146 @@
+[
+  {
+    "tiempo": {
+      "fecha": "2025-04-23",
+      "dia_semana": "Miércoles"
+    },
+    "ubicacion": {
+      "nombre": "Residencia Estudiantil Bahia",
+      "coordenadas": {
+        "lat": 23.1468653,
+        "lon": -82.3016635
+      }
+    },
+    "horarios": [
+      {
+        "periodo": "mañana",
+        "promedio": 59.0,
+        "minimo": 48.0,
+        "maximo": 83.0,
+        "peak": 88.5
+      },
+      {
+        "periodo": "tarde",
+        "promedio": 63.4,
+        "minimo": 42.3,
+        "maximo": 89.0,
+        "peak": 92.9
+      },
+      {
+        "periodo": "noche",
+        "promedio": 58.3,
+        "minimo": 41.9,
+        "maximo": 80.2,
+        "peak": 83.0
+      }
+    ]
+  },
+  {
+    "tiempo": {
+      "fecha": "2025-04-24",
+      "dia_semana": "Jueves"
+    },
+    "ubicacion": {
+      "nombre": "Residencia Estudiantil Bahia",
+      "coordenadas": {
+        "lat": 10.5,
+        "lon": -74.8
+      }
+    },
+    "horarios": [
+      {
+        "periodo": "mañana",
+        "promedio": 65.3,
+        "minimo": 47.3,
+        "maximo": 76.1,
+        "peak": 82.3
+      },
+      {
+        "periodo": "tarde",
+        "promedio": 60.6,
+        "minimo": 47.8,
+        "maximo": 82.8,
+        "peak": 92.8
+      },
+      {
+        "periodo": "noche",
+        "promedio": 48.8,
+        "minimo": 44.2,
+        "maximo": 56.0,
+        "peak": 60.0
+      }
+    ]
+  },
+  {
+    "tiempo": {
+      "fecha": "2025-04-25",
+      "dia_semana": "Viernes"
+    },
+    "ubicacion": {
+      "nombre": "Residencia Estudiantil Bahia",
+      "coordenadas": {
+        "lat": 10.5,
+        "lon": -74.8
+      }
+    },
+    "horarios": [
+      {
+        "periodo": "mañana",
+        "promedio": 65.1,
+        "minimo": 46.2,
+        "maximo": 81.8,
+        "peak": 92.8
+      },
+      {
+        "periodo": "tarde",
+        "promedio": 0.0,
+        "minimo": 0.0,
+        "maximo": 0.0,
+        "peak": 0.0
+      },
+      {
+        "periodo": "noche",
+        "promedio": 0.0,
+        "minimo": 0.0,
+        "maximo": 0.0,
+        "peak": 0.0
+      }
+    ]
+  },
+  {
+    "tiempo": {
+      "fecha": "2025-04-26",
+      "dia_semana": "Sábado"
+    },
+    "ubicacion": {
+      "nombre": "Residencia Estudiantil Bahia",
+      "coordenadas": {
+        "lat": 10.5,
+        "lon": -74.8
+      }
+    },
+    "horarios": [
+      {
+        "periodo": "mañana",
+        "promedio": 58.6,
+        "minimo": 47.0,
+        "maximo": 76.0,
+        "peak": 80.1
+      },
+      {
+        "periodo": "tarde",
+        "promedio": 61.5,
+        "minimo": 43.4,
+        "maximo": 74.0,
+        "peak": 82.0
+      },
+      {
+        "periodo": "noche",
+        "promedio": 56.1,
+        "minimo": 42.2,
+        "maximo": 67.1,
+        "peak": 74.7
+      }
+    ]
+  }
+]
