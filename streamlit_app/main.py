@@ -5,7 +5,7 @@ import os
 import folium
 from streamlit_folium import folium_static, st_folium
 
-rjson = "data.json"
+rjson = "../jsons/data.json"
 
 inf = []
 
@@ -66,3 +66,44 @@ for i in range(len(dfmaps)):
 
 folium_static(mapa, width=700)
 
+
+
+xd = ["mañana", "tarde", "noche"]
+phor = []
+mañana = []
+tarde = []
+noche = []
+
+for j in range(len(data)):
+    if data[j]["periodo"] in xd :
+        phor.append(data[j])
+        
+for i in range(len(phor))  :
+    if phor[i]["periodo"] == "mañana":
+        mañana.append(
+            {
+                "periodos": phor[i]["periodo"],
+                "mediciones": phor[i]["mediciones"]
+            }
+        )
+    
+    elif phor[i]["periodo"] == "tarde":
+        tarde.append(
+            {
+                "periodos": phor[i]["periodo"],
+                "mediciones": phor[i]["mediciones"]
+            }
+        )
+    
+    else:
+        noche.append(
+            {
+                "periodos": phor[i]["periodo"],
+                "mediciones": phor[i]["mediciones"]
+            }
+        )
+        
+dfm = st.dataframe(mañana)
+dft = st.dataframe(tarde)
+dfn = st.dataframe(noche)
+ 
