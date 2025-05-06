@@ -85,50 +85,8 @@
   },
   {
     "tiempo": {
-      "fecha": "2025-04-00",
-      "dia_semana": "Sábado"
-    },
-    "ubicacion": {
-      "nombre": "Residencia Estudiantil Bahia",
-      "coordenadas": {
-        "lat": 10.5,
-        "lon": -74.8
-      }
-    },
-    "horarios": [
-      {
-        "periodo": "mañana",
-        "mediciones": {
-          "promedio": 58.6,
-          "minimo": 47.0,
-          "maximo": 76.0,
-          "peak": 80.1
-        }
-      },
-      {
-        "periodo": "tarde",
-        "mediciones": {
-          "promedio": 61.5,
-          "minimo": 43.4,
-          "maximo": 74.0,
-          "peak": 82.0
-        }
-      },
-      {
-        "periodo": "noche",
-        "mediciones": {
-          "promedio": 56.1,
-          "minimo": 42.2,
-          "maximo": 67.1,
-          "peak": 74.7
-        }
-      }
-    ]
-  },
-  {
-    "tiempo": {
       "fecha": "2025-04-26",
-      "dia_semana": "Viernes"
+      "dia_semana": "Sabado"
     },
     "ubicacion": {
       "nombre": "Residencia Estudiantil Bahia",
@@ -170,7 +128,7 @@
   {
     "tiempo": {
       "fecha": "2025-04-28",
-      "dia_semana": "Viernes"
+      "dia_semana": "Lunes"
     },
     "ubicacion": {
       "nombre": "Residencia Estudiantil Bahia",
@@ -212,7 +170,7 @@
   {
     "tiempo": {
       "fecha": "2025-04-30",
-      "dia_semana": "Viernes"
+      "dia_semana": "Miercoles"
     },
     "ubicacion": {
       "nombre": "Residencia Estudiantil Bahia",
@@ -296,7 +254,7 @@
   {
     "tiempo": {
       "fecha": "2025-05-03",
-      "dia_semana": "Viernes"
+      "dia_semana": "Sabado"
     },
     "ubicacion": {
       "nombre": "Residencia Estudiantil Bahia",
@@ -338,7 +296,7 @@
   {
     "tiempo": {
       "fecha": "2025-05-05",
-      "dia_semana": "Viernes"
+      "dia_semana": "Lunes"
     },
     "ubicacion": {
       "nombre": "Residencia Estudiantil Bahia",
@@ -351,10 +309,10 @@
       {
         "periodo": "mañana",
         "mediciones": {
-          "promedio": 0.0,
-          "minimo": 0.0,
-          "maximo": 0.0,
-          "peak": 0.0
+          "promedio": 58.6,
+          "minimo": 47.0,
+          "maximo": 76.0,
+          "peak": 80.1
         }
       },
       {
