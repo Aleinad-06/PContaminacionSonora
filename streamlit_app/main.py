@@ -1,7 +1,6 @@
 import pandas as pd 
 import streamlit as st
 import json
-import os 
 import folium
 from streamlit_folium import folium_static, st_folium
 
