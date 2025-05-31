@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 import json
 import folium
-from streamlit_folium import folium_static, st_folium
+from streamlit_folium import folium_static
 
 rjson = "../jsons/data.json"
 
@@ -38,11 +38,8 @@ for i in inf:
         )
 
 df = pd.DataFrame(data)
-
 st.text("Toda la Informacion")
-    
 df
-
 
 maps = []
 for ubimap in data:
@@ -92,21 +89,25 @@ st.line_chart(
 )
 
 st.subheader("Análisis")
-col1, col2 = st.columns(2)
+col1, col2, col3 = st.columns(3)
 
 with col1:
     st.metric("Mayor nivel registrado (Peak)", f"{df['peak'].max()} dB", 
-              help="Máximo pico de decibelios registrado en cualquier período")
+    help="Máximo pico de decibelios registrado en cualquier período")
 
 with col2:
     st.metric("Período más ruidoso en promedio",
-              f"{df.groupby('periodo')['maximo'].mean().idxmax()} ({(df.groupby('periodo')['maximo'].mean().max()):.1f} dB)")   
+    f"{df.groupby('periodo')['maximo'].mean().idxmax()} ({(df.groupby('periodo')['maximo'].mean().max()):.1f} dB)")   
+
+with col3:
+    st.metric("Periodo menos ruidoso en promedio"),
+    f"{df.groupby("periodo")["minimo"].mean().idxmax()} ({(df.groupby("periodo")["minimo"].mean().max()):.1f}dB)"
 
 st.markdown("""
 **Leyenda:**
-- 🟠 **Mañana:** 6:30 - 12:30
-- 🔴 **Tarde:** 12:30 - 18:30
-- 🔵 **Noche:** 18:30 - 6:30
+-  **Mañana:** 6:30 - 12:30
+-  **Tarde:** 12:30 - 18:30
+-  **Noche:** 18:30 - 6:30
 
 **Niveles de referencia según OMS (2021):**
 - <55 dB 🔊: Nivel recomendado para áreas residenciales durante el día 
@@ -119,43 +120,3 @@ st.markdown("""
   *(Para prevenir alteraciones del sueño - OMS)*
 """)
     
-# xd = ["mañana", "tarde", "noche"]
-# phor = []
-# mañana = []
-# tarde = []
-# noche = []
-
-# for j in range(len(data)):
-#     if data[j]["periodo"] in xd :
-#         phor.append(data[j])
-        
-# for i in range(len(phor))  :
-#     if phor[i]["periodo"] == "mañana":
-#         mañana.append(
-#             {
-#                 "periodos": phor[i]["periodo"],
-#                 "mediciones": phor[i]["mediciones"]
-#             }
-#         )
-    
-#     elif phor[i]["periodo"] == "tarde":
-#         tarde.append(
-#             {
-#                 "periodos": phor[i]["periodo"],
-#                 "mediciones": phor[i]["mediciones"]
-#             }
-#         )
-    
-#     else:
-#         noche.append(
-#             {
-#                 "periodos": phor[i]["periodo"],
-#                 "mediciones": phor[i]["mediciones"]
-#             }
-#         )
-        
-# dfm = st.dataframe(mañana)
-# dft = st.dataframe(tarde)
-# dfn = st.dataframe(noche)
-
- 

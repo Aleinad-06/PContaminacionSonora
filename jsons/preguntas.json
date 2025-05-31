@@ -4,7 +4,7 @@
     "opciones": ["50 dB", "70 dB", "85 dB"],
     "respuesta": "85 dB",
     "pista": "Cuando el ruido se vuelve una amenaza invisible para tus oídos...",
-    "audio": "../musica/umbral_peligro.mp3",
+    "audio": "umbral_peligro.mp3",
     "valor": 5
   },
   {
@@ -12,7 +12,7 @@
     "opciones": ["90 dB", "100 dB", "120 dB"],
     "respuesta": "120 dB",
     "pista": "Imagínate al frente del escenario con los altavoces a tope.",
-    "audio": "../musica/rock_concierto.mp3",
+    "audio": "rock_concierto.mp3",
     "valor": 5
   },
   {
@@ -20,7 +20,7 @@
     "opciones": ["Llover en silencio", "Música a volumen alto en el transporte público", "Un árbol creciendo"],
     "respuesta": "Música a volumen alto en el transporte público",
     "pista": "Una acción cotidiana que puede molestar a muchos en espacios cerrados.",
-    "audio": "../musica/transporte_musica.mp3",
+    "audio": "transporte_musica.mp3",
     "valor": 5
   },
   {
@@ -28,7 +28,7 @@
     "opciones": ["Estrés y problemas de sueño", "Mejora de la concentración", "Aumento de la felicidad"],
     "respuesta": "Estrés y problemas de sueño",
     "pista": "No solo molesta, también te quita el sueño.",
-    "audio": "../musica/estres_sonoro.mp3",
+    "audio": "estres_sonoro.mp3",
     "valor": 5
   },
   {
@@ -36,7 +36,7 @@
     "opciones": ["Usar tapones para los oídos", "Escuchar más fuerte", "Ignorar el ruido"],
     "respuesta": "Usar tapones para los oídos",
     "pista": "Una pequeña barrera puede hacer una gran diferencia.",
-    "audio": "../musica/proteger_oido.mp3",
+    "audio": "proteger_oido.mp3",
     "valor": 5
   },
   {
@@ -44,7 +44,7 @@
     "opciones": ["Por la mañana", "A media tarde", "Por la noche"],
     "respuesta": "Por la noche",
     "pista": "Cuando el mundo quiere dormir, los ruidos son más evidentes.",
-    "audio": "../musica/noche_ruidosa.mp3",
+    "audio": "noche_ruidosa.mp3",
     "valor": 5
   },
   {
@@ -52,7 +52,7 @@
     "opciones": ["Sonidos bajos", "Sonidos constantes y fuertes", "Sonidos suaves de la naturaleza"],
     "respuesta": "Sonidos constantes y fuertes",
     "pista": "No siempre lo más fuerte es lo más corto.",
-    "audio": "../musica/ruido_constante.mp3",
+    "audio": "ruido_constante.mp3",
     "valor": 5
   },
   {
@@ -60,7 +60,7 @@
     "opciones": ["Dejar de usar bicicletas", "Crear áreas verdes y mejorar el aislamiento acústico", "Bajar la música de las fiestas"],
     "respuesta": "Crear áreas verdes y mejorar el aislamiento acústico",
     "pista": "Más árboles, menos ruido.",
-    "audio": "../musica/zona_verde.mp3",
+    "audio": "zona_verde.mp3",
     "valor": 5
   },
   {
@@ -68,7 +68,7 @@
     "opciones": ["50 dB", "80 dB", "100 dB"],
     "respuesta": "100 dB",
     "pista": "Tráfico denso, bocinas y motores en su punto máximo.",
-    "audio": "../musica/hora_pico.mp3",
+    "audio": "hora_pico.mp3",
     "valor": 5
   },
   {
@@ -76,7 +76,7 @@
     "opciones": ["Un parque tranquilo", "La residencia estudiantil Bahía", "Una zona rural alejada del tráfico"],
     "respuesta": "La residencia estudiantil Bahía",
     "pista": "Donde la juventud no descansa… ni el ruido tampoco.",
-    "audio": "../musica/residencia_bahia.mp3",
+    "audio": "residencia_bahia.mp3",
     "valor": 5
   },
   {
@@ -84,7 +84,7 @@
     "opciones": ["Mejora la concentración", "Provoca estrés y problemas de sueño", "Aumenta la felicidad de las personas"],
     "respuesta": "Provoca estrés y problemas de sueño",
     "pista": "Un lugar donde descansar debería ser fácil, pero no lo es.",
-    "audio": "../musica/avenida_estrés.mp3",
+    "audio": "avenida_estrés.mp3",
     "valor": 5
   },
   {
@@ -92,7 +92,7 @@
     "opciones": ["Instalar más semáforos", "Construir más edificios", "Crear zonas peatonales y limitar el tráfico pesado"],
     "respuesta": "Crear zonas peatonales y limitar el tráfico pesado",
     "pista": "Menos autos, más pasos.",
-    "audio": "../musica/zona_peatonal.mp3",
+    "audio": "zona_peatonal.mp3",
     "valor": 5
   },
   {
@@ -100,7 +100,7 @@
     "opciones": ["85 dB", "95 dB", "105 dB"],
     "respuesta": "85 dB",
     "pista": "No parece mucho, pero con el tiempo te afecta.",
-    "audio": "../musica/exposicion_larga.mp3",
+    "audio": "exposicion_larga.mp3",
     "valor": 5
   },
   {
@@ -108,7 +108,7 @@
     "opciones": ["Mejora la respiración", "Aumenta el riesgo de problemas cardiovasculares", "Reduce el estrés y la ansiedad"],
     "respuesta": "Aumenta el riesgo de problemas cardiovasculares",
     "pista": "El corazón también escucha.",
-    "audio": "../musica/trafico_corazon.mp3",
+    "audio": "trafico_corazon.mp3",
     "valor": 5
   },
   {
@@ -116,7 +116,7 @@
     "opciones": ["Sonidos de animales", "Ruidos de tráfico y voces", "Ruidos de naturaleza"],
     "respuesta": "Ruidos de tráfico y voces",
     "pista": "Donde hay mucha gente y movimiento, hay ruido.",
-    "audio": "../musica/residencia_ruido.mp3",
+    "audio": "residencia_ruido.mp3",
     "valor": 5
   },
   {
@@ -124,7 +124,7 @@
     "opciones": ["Escuchar música muy alta para tapar el ruido", "Usar tapones para los oídos o auriculares con cancelación de ruido", "Ignorar el ruido y seguir trabajando"],
     "respuesta": "Usar tapones para los oídos o auriculares con cancelación de ruido",
     "pista": "La protección auditiva también es prevención.",
-    "audio": "../musica/cancelacion_sonido.mp3",
+    "audio": "cancelacion_sonido.mp3",
     "valor": 5
   },
   {
@@ -132,7 +132,7 @@
     "opciones": ["Por la mañana temprano", "Durante el mediodía", "Por la noche cuando la gente duerme"],
     "respuesta": "Por la noche cuando la gente duerme",
     "pista": "Cuando más necesitas silencio, el ruido puede hacer más daño.",
-    "audio": "../musica/suenio_interrumpido.mp3",
+    "audio": "suenio_interrumpido.mp3",
     "valor": 5
   }
 ]

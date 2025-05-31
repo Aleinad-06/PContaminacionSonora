@@ -1,0 +1,22 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #FCC6FF;
+    padding-top: 50px;
+}
+
+.db-counter {
+    font-size: 60px;
+    font-weight: bold;
+    color: #e63946;
+    margin-bottom: 10px;
+}
+
+.label {
+    font-size: 20px;
+    color: #333;
+}
+
+.final {
+    font-size: 15px;
+}
