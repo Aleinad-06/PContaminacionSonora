@@ -1,22 +1,70 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #FCC6FF;
+    background-color: #F5C45E;
     padding-top: 50px;
+    margin: 0;
+}
+
+h1 {
+    padding: 0 20px;
+}
+
+.boton {
+    display: inline-block;
+    background-color: #E3D095;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 25px;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.boton:hover {
+    background-color: #EA7300;
 }
 
 .db-counter {
     font-size: 60px;
     font-weight: bold;
-    color: #e63946;
     margin-bottom: 10px;
 }
 
 .label {
     font-size: 20px;
     color: #333;
+    margin-bottom: 20px;
+}
+
+.foto {
+    width: 80%;
+    max-width: 600px;
+    border-radius: 20px;
+    margin-top: 20px;
+    box-shadow: 0px 4px 12px rgba(192, 61, 0, 0.3);
 }
 
 .final {
+    margin-top: 30px;
+}
+
+.main {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.main a {
+    text-decoration: none;
+    color: #000;
     font-size: 15px;
 }
+
+.main a:hover {
+    color: blue;
+}
+
+.main a:active {
+    color: #e63946;
+}
+

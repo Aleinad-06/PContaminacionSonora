@@ -4,7 +4,7 @@ import json
 import streamlit as st
 import seaborn as sns
 import time
-rjson = "../jsons/data.json"
+rjson = "../data/data.json"
 
 inf = []
 

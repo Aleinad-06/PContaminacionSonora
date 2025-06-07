@@ -39,6 +39,7 @@ for i in inf:
 
 df = pd.DataFrame(data)
 
+
 maps = []
 for ubimap in data:
     maps.append(

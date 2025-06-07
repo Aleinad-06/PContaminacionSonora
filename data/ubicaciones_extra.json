@@ -1,32 +1,30 @@
 [
   {
     "nombre": "Avenida 23 y G",
-    "lat": 23.141154,
-    "lon": -82.389032,
-    "promedio": 72.5
+    "coordenadas":{
+      "lat": 23.141154,
+      "lon": -82.389032},    
+    "promedio": 74.5
   },
   {
     "nombre": "Terminal de Ómnibus Nacionales",
+    "coordenadas":{
     "lat": 23.132012,
-    "lon": -82.383122,
+    "lon": -82.383122},
     "promedio": 78.1
   },
   {
-    "nombre": "Parque Trillo",
-    "lat": 23.128750,
-    "lon": -82.388900,
-    "promedio": 65.4
-  },
-  {
     "nombre": "Hospital Calixto García",
+    "coordenadas":{
     "lat": 23.136213,
-    "lon": -82.390542,
+    "lon": -82.390542},
     "promedio": 69.7
   },
   {
     "nombre": "Universidad de La Habana",
+    "coordenadas":{
     "lat": 23.137558,
-    "lon": -82.383176,
+    "lon": -82.383176},
     "promedio": 60.2
   }
 ]

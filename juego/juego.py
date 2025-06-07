@@ -14,7 +14,7 @@ st.image(image, caption="(●'◡'●)Creemos Conciencia")
 
 # ----------------------
 
-with open("../jsons/data.json", "r", encoding="utf-8") as f:
+with open("../data/data.json", "r", encoding="utf-8") as f:
     inf = json.load(f)
 
 data = []
@@ -55,7 +55,7 @@ df_ubicaciones = pd.DataFrame(ubicaciones)
 
 # ----------------------
 
-with open("../jsons/preguntas.json", "r", encoding="utf-8") as f:
+with open("../data/preguntas.json", "r", encoding="utf-8") as f:
     preguntas_data = json.load(f)
 
 preguntas = []
@@ -77,6 +77,25 @@ if "inicio" not in st.session_state:
     st.session_state["inicio"] = False
 if "preguntas_usadas" not in st.session_state:
     st.session_state["preguntas_usadas"] = []
+
+# ----------------------
+with open("../data/ubicaciones_extra.json", "r", encoding="utf-8") as f:
+    ubicaciones_extras = json.load(f)
+
+ubicaciones_ext = []
+for u in ubicaciones_extras:
+    ubicaciones_ext.append(
+        {
+            "ubicacion": u["nombre"],
+            "lat": u["coordenadas"]["lat"],
+            "lon": u["coordenadas"]["lon"],
+            "promedio": u["promedio"]
+        }
+    )
+
+df_ubicaciones_extra = pd.DataFrame(ubicaciones_ext)
+
+df_todas_ubicaciones = pd.concat([df_ubicaciones, df_ubicaciones_extra], ignore_index=True)
 
 # ----------------------
 
@@ -106,131 +125,140 @@ else:
 
     layer = pdk.Layer(
         "ScatterplotLayer",
-        df_ubicaciones,
-        opacity=0.8,
+        data=df_todas_ubicaciones,
         get_position='[lon, lat]',
-        get_radius=100,
-        get_fill_color=[220, 139, 224],
-        tooltip="ubicacion",
+        get_color='[200, 25, 0]',
+        get_radius=150,
+        pickable=True,
     )
     view_state = pdk.ViewState(
-        latitude=23.1,
-        longitude=-82.38,
-        zoom=11
+    latitude=df_todas_ubicaciones["lat"].mean(),
+    longitude=df_todas_ubicaciones["lon"].mean(),
+    zoom=11,
+    pitch=0
     )
 
     st.pydeck_chart(pdk.Deck(layers=[layer], initial_view_state=view_state))
     st.markdown("---")
     
-# ----------------------
+#---------------------------
 
-if st.session_state["inicio"]:
-    st.subheader("🎧 ¿Qué lugar es el más ruidoso?")
+    if "seleccionadas" not in st.session_state:
+        ubicaciones = df_todas_ubicaciones["ubicacion"].unique().tolist()
+        n = min(5, len(ubicaciones))
+        seleccionadas = random.sample(ubicaciones, n)
 
-    ubicaciones_unicas = df["ubicacion"].unique().tolist()
-    n = min(4, len(ubicaciones_unicas))
-    seleccionadas = random.sample(ubicaciones_unicas, n)
-    
-    promedios = {
-        u: df_ubicaciones[df_ubicaciones["ubicacion"] == u]["promedio"].values[0] 
-        for u in seleccionadas
-    }
-    correcta = max(promedios, key=promedios.get)
-    df_ubicaciones["is_correct"] = df_ubicaciones["ubicacion"] == correcta
+        promedios = {u: df_todas_ubicaciones[df_todas_ubicaciones["ubicacion"] == u]["promedio"].values[0] for u in seleccionadas}
+        correcta = max(promedios, key=promedios.get)
 
-    
+        st.session_state.seleccionadas = seleccionadas
+        st.session_state.promedios = promedios
+        st.session_state.correcta = correcta
+        st.session_state.respuesta_ruido = None
+
+#---------------------------
+
     st.markdown("### 🔍 Selecciona la ubicación que crees que tiene más ruido")
-    eleccion = st.radio("¿Qué ubicación tiene más ruido?", seleccionadas, index=None)
 
-    if st.button("✅ Comprobar respuesta"):
-        if eleccion is None:
-            st.warning("Por favor, selecciona una ubicación antes de continuar.")
-        else:
-            if eleccion == correcta:
-                st.success("¡Correcto! 🎉")
+    eleccion = st.radio(
+        "¿Qué ubicación tiene más ruido?",
+        st.session_state.seleccionadas,
+        index=None,
+        key="eleccion_ruido"
+    )
+
+    if st.button("✅ Comprobar respuesta") and eleccion:
+        st.session_state.respuesta_ruido = eleccion
+
+    if st.session_state.get("respuesta_ruido"):
+        eleccion = st.session_state.respuesta_ruido
+        correcta = st.session_state.correcta
+        promedios = st.session_state.promedios
+
+        if eleccion == correcta:
+            st.success("¡Correcto! 🎉")
+            if not st.session_state.get("puntaje_ruido_sumado"):
                 st.session_state["puntaje"] += 20
+                st.session_state["puntaje_ruido_sumado"] = True
+        else:
+            st.error(f"Incorrecto. La ubicación con más ruido era: **{correcta}**")
+
+        st.info(f"🔊 Nivel de ruido en {correcta}: {promedios[correcta]:.2f} dB")
+
+        audio_nombre = next((p["audio"].strip() for p in preguntas if p["respuesta"] == correcta and "audio" in p), None)
+        if audio_nombre:
+            ruta_audio = f"../musica/{audio_nombre}"
+            if os.path.exists(ruta_audio):
+                with open(ruta_audio, "rb") as audio_r:
+                    st.audio(audio_r.read(), format="audio/mp3")
             else:
-                st.error(f"Incorrecto. La ubicación con más ruido era: **{correcta}**")
+                st.warning(f"No se encontró el archivo de audio: {ruta_audio}")
+        else:
+            st.warning("No se encontró un audio para esta ubicación.")
 
-            st.info(f"🔊 Nivel de ruido en {correcta}: {promedios[correcta]:.2f} dB")
+        st.markdown(f"### 🏆 Puntaje actual: {st.session_state['puntaje']}")
+        st.markdown("---")
 
-            audio_nombre = None
-            for p in preguntas:
-                if p["respuesta"] == correcta and "audio" in p:
-                    audio_nombre = p["audio"].strip()
-                    break
 
-            if audio_nombre:
-                ruta_audio = f"../musica/{audio_nombre}"
-                if os.path.exists(ruta_audio):
-                    with open(ruta_audio, "rb") as audio_r:
-                        st.audio(audio_r.read(), format="audio/mp3")
+# ----------------------
+
+        image = Image.open("../imagen/imagen2.jpeg")
+        st.image(image, caption="El grito no es solo de molestia, es una señal: la ciudad está demasiado ruidosa. ¿La estás escuchando?")
+
+        st.subheader("🧠 Trivia educativa")
+
+        if "pregunta_actual" not in st.session_state or st.session_state.get("respuesta_trivia") is not None:
+            preguntas_disponibles = [p for p in preguntas if p["pregunta"] not in st.session_state.preguntas_usadas]
+
+            if preguntas_disponibles:
+                pregunta_actual = random.choice(preguntas_disponibles)
+                st.session_state.pregunta_actual = pregunta_actual
+                st.session_state.respuesta_trivia = None
+                st.session_state.preguntas_usadas.append(pregunta_actual["pregunta"])
+            else:
+                st.session_state.pregunta_actual = None
+
+        pregunta_actual = st.session_state.get("pregunta_actual")
+
+        if pregunta_actual:
+            st.markdown(f"**{pregunta_actual['pregunta']}**")
+            opcion = st.radio(
+                "Opciones:",
+                pregunta_actual["opciones"],
+                key=pregunta_actual["pregunta"],
+                index=None  
+            )
+
+            if st.button("📚 Comprobar trivia") and opcion:
+                st.session_state.respuesta_trivia = opcion
+                if opcion == pregunta_actual["respuesta"]:
+                    st.success("¡Correcto!")
+                    st.session_state["puntaje"] += pregunta_actual["valor"]
                 else:
-                    st.warning(f"No se encontró el archivo de audio: {ruta_audio}")
+                    st.warning("Incorrecto. Pista: " + pregunta_actual["pista"])
+
+                # st.audio(f"../audios/{pregunta_actual['audio']}")
+                # st.experimental_rerun()  
+
+    # ----------------------
+
+        elif pregunta_actual is None:
+            st.subheader("🎉 ¡Juego finalizado!")
+            st.markdown(f"### Tu puntaje final es: **{st.session_state['puntaje']} puntos**")
+
+            if st.session_state.puntaje >= 100:
+                st.success("🥳 ¡Eres un maestro del silencio!")
+            elif 80 <= st.session_state.puntaje < 100:
+                st.info("¡Muy bien! Eres casi un experto del ruido.")
+            elif 60 <= st.session_state.puntaje < 80:
+                st.warning("Estás en camino, pero necesitas afinar tus oídos.")
             else:
-                st.warning("No se encontró un audio para esta ubicación.")
+                st.error("📉 Suspenso… El ruido te ganó esta vez. ¡Intenta otra vez!")
 
-    st.markdown(f"### 🏆 Puntaje actual: {st.session_state['puntaje']}")
-    st.markdown("---")
-
-# ----------------------
-    image = Image.open("../imagen/imagen2.jpeg")
-    st.image(image, caption="El grito no es solo de molestia, es una señal: la ciudad está demasiado ruidosa. ¿La estás escuchando?")
-
-    st.subheader("🧠 Trivia educativa")
-
-    if "pregunta_actual" not in st.session_state or st.session_state.get("respuesta_trivia") is not None:
-        preguntas_disponibles = [p for p in preguntas if p["pregunta"] not in st.session_state.preguntas_usadas]
-
-        if preguntas_disponibles:
-            pregunta_actual = random.choice(preguntas_disponibles)
-            st.session_state.pregunta_actual = pregunta_actual
-            st.session_state.respuesta_trivia = None
-            st.session_state.preguntas_usadas.append(pregunta_actual["pregunta"])
-        else:
-            st.session_state.pregunta_actual = None
-
-    pregunta_actual = st.session_state.get("pregunta_actual")
-
-    if pregunta_actual:
-        st.markdown(f"**{pregunta_actual['pregunta']}**")
-        opcion = st.radio(
-            "Opciones:",
-            pregunta_actual["opciones"],
-            key=pregunta_actual["pregunta"],
-            index=None  
-        )
-
-        if st.button("📚 Comprobar trivia") and opcion:
-            st.session_state.respuesta_trivia = opcion
-            if opcion == pregunta_actual["respuesta"]:
-                st.success("¡Correcto!")
-                st.session_state["puntaje"] += pregunta_actual["valor"]
-            else:
-                st.warning("Incorrecto. Pista: " + pregunta_actual["pista"])
-
-            # st.audio(f"../audios/{pregunta_actual['audio']}")
-            # st.experimental_rerun()  
-
-# ----------------------
-
-    elif pregunta_actual is None:
-        st.subheader("🎉 ¡Juego finalizado!")
-        st.markdown(f"### Tu puntaje final es: **{st.session_state['puntaje']} puntos**")
-
-        if st.session_state.puntaje >= 100:
-            st.success("🥳 ¡Eres un maestro del silencio!")
-        elif 80 <= st.session_state.puntaje < 100:
-            st.info("¡Muy bien! Eres casi un experto del ruido.")
-        elif 60 <= st.session_state.puntaje < 80:
-            st.warning("Estás en camino, pero necesitas afinar tus oídos.")
-        else:
-            st.error("📉 Suspenso… El ruido te ganó esta vez. ¡Intenta otra vez!")
-
-        if st.button("🔁 Reiniciar juego"):
-            st.session_state["puntaje"] = 0
-            st.session_state["preguntas_usadas"] = []
-            st.session_state["inicio"] = False
-            st.session_state.pop("pregunta_actual", None)
-            st.session_state.pop("respuesta_trivia", None)
-            st.rerun()
+            if st.button("🔁 Reiniciar juego"):
+                st.session_state["puntaje"] = 0
+                st.session_state["preguntas_usadas"] = []
+                st.session_state["inicio"] = False
+                st.session_state.pop("pregunta_actual", None)
+                st.session_state.pop("respuesta_trivia", None)
+                st.rerun()
