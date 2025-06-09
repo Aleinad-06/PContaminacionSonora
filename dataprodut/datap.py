@@ -100,8 +100,8 @@ else:
 #-----------------------
 
 
-st.title("Y Porque no ver algo más interesante")
-mostrar_analisis = st.button("Veamos los Análisis")
+st.html("<h2>⬇️Y porque no ver algo mas interesante⬇️</h2>")
+mostrar_analisis = st.button("Veamos los Análisis😲")
 
 if mostrar_analisis:
     
@@ -140,6 +140,21 @@ if mostrar_analisis:
         color=["#FF9F43", "#FF6B6B", "#48DBFB"],
         height= 400
     )
+    st.markdown("""Durante el periodo observado, se evidencian variaciones notables en los niveles máximos de ruido según el momento del día.
+                
+🔵 La tarde domina con los picos más constantes y elevados, lo que sugiere una actividad intensa en ese horario.
+
+🔴 La noche presenta algunos picos aislados, probablemente asociados a eventos puntuales o comportamientos anómalos.
+
+🟠 La mañana muestra fluctuaciones irregulares, aunque generalmente por debajo de los niveles de la tarde.
+
+Este comportamiento indica que el ruido ambiental varía significativamente según el período del día,
+con la tarde como el tramo más ruidoso de forma sostenida.
+
+🎯 Objetivo: Visualizar cómo varían los niveles máximos de decibelios por período del día y
+detectar cuál de ellos tiende a registrar los valores más altos de forma sistemática.""")
+
+#-----------------------
 
     st.subheader("📊Picos Máximos Registrados (peak)")
     st.line_chart(
@@ -149,15 +164,15 @@ if mostrar_analisis:
         height=400
     )
     
-    st.markdown("""A lo largo del periodo analizado en la Residencia Estudiantil Bahía,
-                se registraron los valores peak de ruido correspondientes a diferentes momentos del día. 
-                Estos picos reflejan los instantes de mayor intensidad sonora en cada jornada,
-                lo cual permite identificar variaciones y posibles anomalías en el ambiente acústico.
+    st.markdown("""Los valores más altos de decibelios (picos) varían diariamente, con algunas fechas destacando por registrar niveles extremos.
 
-🔊 En uno de los días, el peak superó los 100 dB, debido al paso de un camión de bomberos con la sirena encendida.
-Este evento puntual generó una anomalía sonora significativa dentro del registro general.
+💥 La tarde nuevamente sobresale con varios picos por encima de los 100 dB, lo cual sugiere eventos anómalos o momentos de alta actividad.
 
-🎯 El propósito de este análisis es que el usuario pueda observar con más detalle el comportamiento de los picos sonoros por día,
+🌙 La noche y la mañana presentan también algunos valores elevados, lo que refuerza la idea de que los picos no siempre ocurren en horarios previsibles.
+
+📌 Este análisis ayuda a detectar eventos atípicos o peligrosos para la salud auditiva, incluso si solo duran unos segundos.
+
+🎯 Objetivo: Que el usuario pueda observar con más detalle el comportamiento de los picos sonoros por día, 
 reconociendo cuándo ocurren situaciones inusuales y entendiendo mejor la dinámica real del ruido en su entorno.""")
     
     st.html(
@@ -165,7 +180,9 @@ reconociendo cuándo ocurren situaciones inusuales y entendiendo mejor la dinám
     )  
     audio = open("../musica/camion-de-bomberos.mp3", "rb")
     st.audio(audio.read(), format="audio/mp3")
-       
+    
+#-------------------------
+    
     st.subheader("Evolución de los Decibeleios mínimo por el Periodo del Día (minimo)")
     st.line_chart(
         df.pivot_table(index= "fecha", columns= "periodo", values= "minimo").reset_index().set_index("fecha"),
@@ -174,31 +191,92 @@ reconociendo cuándo ocurren situaciones inusuales y entendiendo mejor la dinám
         height= 400
     )
 
-    st.subheader("Análisis")
-    col1, col2, col3 = st.columns(3)
+    st.markdown("""Los niveles mínimos de decibeles se mantienen elevados a lo largo del periodo analizado,
+                sin registrar caídas notables que indiquen momentos de verdadero silencio.
+                
+🔵 En la mañana se observan más fluctuaciones, destacando una leve baja el 23 de mayo (42 dB), posiblemente reflejando un instante de menor actividad.
+
+🟣 La noche, sorprendentemente, no es la más silenciosa, manteniéndose cerca de los 50 dB de forma constante.
+
+🟡 La tarde varía más, pero tampoco desciende a niveles bajos.
+
+En resumen, el gráfico evidencia que el ruido es constante y persistente durante todos los períodos del día.
+
+🎯 Objetivo: Permitir al usuario identificar si existen momentos de verdadero silencio durante el día y
+comprender la persistencia del ruido ambiente, incluso en horarios tradicionalmente más tranquilos.""")
+
+#-----------------------
+
+    st.subheader("Resumen")
+    col1, col2 = st.columns(2)
 
     with col1:
-        st.metric("Mayor nivel registrado (Peak)", f"{df['peak'].max()} dB", 
+        st.metric("Mayor nivel registrado (Peak)",
+        f"{df['peak'].max()} dB", 
         help="Máximo pico de decibelios registrado en cualquier período")
 
     with col2:
         st.metric("Período más ruidoso en promedio",
-        f"{df.groupby('periodo')['maximo'].mean().idxmax()} ({(df.groupby('periodo')['maximo'].mean().max()):.1f} dB)")
-
+        f"{df.groupby("periodo")["maximo"].mean().idxmax()} ({(df.groupby("periodo")["maximo"].mean().max()):.1f} dB)")
+    
+        st.metric("Menor nivel registrado",
+        f"{df.groupby("periodo")["minimo"].mean().idxmin()} ({(df.groupby("periodo")["minimo"].mean().min()):.1f} dB)")
+    
     st.markdown("""
     **Leyenda:**
     -  **Mañana:** 6:30 - 12:30
     -  **Tarde:** 12:30 - 18:30
     -  **Noche:** 18:30 - 6:30
-
-    **Niveles de referencia según OMS :**
-    - <55 dB 🔊: Nivel recomendado para áreas residenciales durante el día 
-    - 55-65 dB ⚠️: Puede causar molestias y alteraciones del sueño
-    - >65 dB 🔴: Riesgo de enfermedades cardiovasculares con exposición prolongada
-    - >75 dB 🚨: Daño auditivo potencial según exposición
-
-    **Referencia nocturna especial:**
-    - <45 dB 🌙: Nivel recomendado para horario nocturno
-    *(Para prevenir alteraciones del sueño - OMS)*
     """)
+
+#------------------------------
+    
+    condiciones = []
+    
+    for i in range(len(df)):
+        periodo = df.iloc[i]["periodo"]
+        promedio = df.iloc[i]["promedio"]
+        
+        if periodo == "mañana" and promedio > 55:
+            condiciones.append(True)
+        elif periodo == "tarde" and promedio > 65:
+            condiciones.append(True)
+        elif periodo == "noche" and promedio > 45:
+            condiciones.append(True)
+        else:
+            condiciones.append(False) 
+    df["supera_limites"] = condiciones
+    
+    limites_por_periodo = df[df["supera_limites"]].groupby("periodo")["fecha"].nunique().reset_index(name="dias_superados")
+
+    fig = px.bar(
+        limites_por_periodo,
+        x="periodo",
+        y="dias_superados",
+        color="periodo",
+        color_discrete_map={
+            "mañana": "#FFD166",  
+            "tarde": "#DC2525",   
+            "noche": "#0B1D51" 
+            },
+        title="🌡️ Días en que se superaron los límites de ruido por período",
+        labels={"dias_superados": "Cantidad de días"}
+    )
+    st.plotly_chart(fig)
+
+    st.markdown("""
+    📌 Este gráfico muestra ***cuántas veces se superaron los niveles de ruido saludables***,
+    según la OMS, para cada período del día: 
+    (Teniendo una gran incidencia en la "mañana" y en la "noche")
+
+    - **🌅 Mañana**: límite 55 dB
+    - **🌞 Tarde**: límite 65 dB
+    - **🌙 Noche**: límite 45 dB
+
+    🎯 El objetivo es identificar en qué momentos del día el ambiente fue más ruidoso y si existe algún patrón recurrente de exposición a niveles sonoros potencialmente peligrosos.
+    """)
+    
+    
+    
+    
     
