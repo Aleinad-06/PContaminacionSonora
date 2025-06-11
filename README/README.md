@@ -19,8 +19,9 @@ Concientizar a las personas que conviven en la residencia sobre el impacto que t
 - HTML, CSS, JavaScript (para la web)
 - CapCut (para edición del video)
 
-👁️‍🗨️ Nuestro llamado
-El ruido no es solo "molesto", **es contaminación**. Tú puedes ayudar a reducirlo con acciones pequeñas, pero significativas.
+👁️‍🗨️ Mi llamado es :
+
+El ruido no es solo "molesto", ****es contaminación****. Tú puedes ayudar a reducirlo con acciones pequeñas, pero significativas.
 
 Porque el primer paso para cambiar el mundo... es escucharlo.
 

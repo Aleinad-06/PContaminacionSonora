@@ -13,11 +13,16 @@ Concientizar a las personas que conviven en la residencia sobre el impacto que t
 - 🎮 **Juego educativo interactivo** donde podrás convertirte en un "detective del ruido".
 - 🎥 **Video explicativo** que narra esta historia con datos, imágenes y soluciones.
 - 🌐 Página web con acceso directo a cada componente del proyecto.
+  
+🔧 Herramientas utilizadas
+- Python (Pandas, Streamlit)
+- HTML, CSS, JavaScript (para la web)
+- CapCut (para edición del video)
 
-👁️‍🗨️ Nuestro llamado
-El ruido no es solo "molesto", **es contaminación**. Tú puedes ayudar a reducirlo con acciones pequeñas, pero significativas.
+👁️‍🗨️ Mi llamado es :
+
+El ruido no es solo "molesto", ****es contaminación****. Tú puedes ayudar a reducirlo con acciones pequeñas, pero significativas.
 
 Porque el primer paso para cambiar el mundo... es escucharlo.
 
 Hecho con ❤️ y Python, para todos los que sueñan con un entorno más sano.
-

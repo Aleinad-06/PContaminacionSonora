@@ -8,13 +8,12 @@ import os
 
 # ----------------------
 
-st.set_page_config(page_title="¡Shhh... Que viene el Ruídologo!", layout="wide")
-image = Image.open("../imagen/imagen1.gif")
+image = Image.open("./imagen/imagen1.gif")
 st.image(image, caption="(●'◡'●)Creemos Conciencia")
 
 # ----------------------
 
-with open("../data/data.json", "r", encoding="utf-8") as f:
+with open("./data/data.json", "r", encoding="utf-8") as f:
     inf = json.load(f)
 
 data = []
@@ -55,7 +54,7 @@ df_ubicaciones = pd.DataFrame(ubicaciones)
 
 # ----------------------
 
-with open("../data/preguntas.json", "r", encoding="utf-8") as f:
+with open("./data/preguntas.json", "r", encoding="utf-8") as f:
     preguntas_data = json.load(f)
 
 preguntas = []
@@ -79,7 +78,7 @@ if "preguntas_usadas" not in st.session_state:
     st.session_state["preguntas_usadas"] = []
 
 # ----------------------
-with open("../data/ubicaciones_extra.json", "r", encoding="utf-8") as f:
+with open("./data/ubicaciones_extra.json", "r", encoding="utf-8") as f:
     ubicaciones_extras = json.load(f)
 
 ubicaciones_ext = []
@@ -111,7 +110,7 @@ if not st.session_state.inicio:
 
 🔔 ¡El ruido no descansa... y tú tampoco!
     """)
-    audio = open("../musica/audio1.mp3", "rb")
+    audio = open("./musica/audio1.mp3", "rb")
     st.audio(audio.read(), format="audio/mp3")
     
     if st.button("🕵️ Comenzar la misión"):
@@ -187,7 +186,7 @@ else:
 
         audio_nombre = next((p["audio"].strip() for p in preguntas if p["respuesta"] == correcta and "audio" in p), None)
         if audio_nombre:
-            ruta_audio = f"../musica/{audio_nombre}"
+            ruta_audio = f"./musica/{audio_nombre}"
             if os.path.exists(ruta_audio):
                 with open(ruta_audio, "rb") as audio_r:
                     st.audio(audio_r.read(), format="audio/mp3")
@@ -202,7 +201,7 @@ else:
 
 # ----------------------
 
-        image = Image.open("../imagen/imagen2.jpeg")
+        image = Image.open("./imagen/imagen2.jpeg")
         st.image(image, caption="El grito no es solo de molestia, es una señal: la ciudad está demasiado ruidosa. ¿La estás escuchando?")
 
         st.subheader("🧠 Trivia educativa")
@@ -237,7 +236,7 @@ else:
                 else:
                     st.warning("Incorrecto. Pista: " + pregunta_actual["pista"])
 
-                # st.audio(f"../audios/{pregunta_actual['audio']}")
+                # st.audio(f"./audios/{pregunta_actual['audio']}")
                 # st.experimental_rerun()  
 
     # ----------------------

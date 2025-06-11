@@ -5,6 +5,7 @@ import plotly.express as px
 from PIL import Image
 import folium
 from streamlit_folium import folium_static
+import plotly.express as px
 
 rjson = "../data/data.json"
 
@@ -43,7 +44,7 @@ df = pd.DataFrame(data)
 
 df["fecha"] = pd.to_datetime(df["fecha"], format="%Y-%m-%d")
 
-st.title("🔊 “Un Día con Ruido: Descubre cómo suena vivir en la Residencia Bahía”")
+st.html("<h1 style= 'font-size: 50px'>🔊 “Un Día con Ruido: Descubre cómo suena vivir en la <span style= 'color: #FF7601'> Residencia Bahía</span>”</h1>")
 
 st.markdown("¿Alguna vez te has preguntado cómo suena el lugar donde vives? Hoy puedes descubrirlo. "
             "Selecciona una fecha del último mes y explora cómo varió el **nivel de ruido** en la "
@@ -78,11 +79,11 @@ if not dia.empty:
 
     pico_maximo = datos["peak"].max()
     if pico_maximo >= 80:
-        st.markdown("😡 **¡Día ruidoso!** El pico de ruido fue muy alto. Tal vez fue una fiesta o mucho tráfico.")
+        st.html("<h1 style= 'font-size: 20px '>😡 **¡Día ruidoso!** El pico de ruido fue muy alto. Tal vez fue una fiesta o mucho tráfico.</h1>")
     elif pico_maximo >= 65:
-        st.markdown("😐 **Nivel moderado.** El ruido estuvo presente, pero no fue extremo.")
+        st.html("<h1 style= 'font-size: 20px '>😐 **Nivel moderado.** El ruido estuvo presente, pero no fue extremo.</h1>")
     else:
-        st.markdown("😊 **Día tranquilo.** La residencia tuvo niveles de ruido bastante bajos. ¡Aprovecha para descansar!")
+        st.html("<h1 style= 'font-size: 20px '>😊 **Día tranquilo.** La residencia tuvo niveles de ruido bastante bajos. ¡Aprovecha para descansar!</h1>")
 
     image = Image.open("../imagen/imagen4.jpg")
     st.image(image, use_container_width=True)
@@ -181,6 +182,13 @@ reconociendo cuándo ocurren situaciones inusuales y entendiendo mejor la dinám
     audio = open("../musica/camion-de-bomberos.mp3", "rb")
     st.audio(audio.read(), format="audio/mp3")
     
+    st.html(
+        "<h4>Sonido del portazo</h4>"
+    )
+    # audio1 = open("../musica/.mp3", "rb")
+    # st.audio(audio.read(), format="audio/mp3")
+    
+    
 #-------------------------
     
     st.subheader("Evolución de los Decibeleios mínimo por el Periodo del Día (minimo)")
@@ -275,8 +283,33 @@ comprender la persistencia del ruido ambiente, incluso en horarios tradicionalme
 
     🎯 El objetivo es identificar en qué momentos del día el ambiente fue más ruidoso y si existe algún patrón recurrente de exposición a niveles sonoros potencialmente peligrosos.
     """)
+#------------------------
+
+    df_trend = df.groupby(["fecha", "periodo"])["promedio"].mean().reset_index()
+
+    df_trend["fecha"] = pd.to_datetime(df_trend["fecha"], format="%y-%m-%d")
+    df_trend = df_trend.sort_values("fecha")
+
+    fig = px.line(
+        df_trend,
+        x="fecha",
+        y="promedio",
+        color="periodo",
+        markers=True,
+        line_shape="spline",  
+        title="📈 Tendencia del nivel promedio de ruido por período"
+    )
+
     
+    fig.update_layout(
+        xaxis_title="Fecha",
+        yaxis_title="Nivel de ruido (dB)",
+        legend_title="Período del día",
+        template="plotly_white"
+    )
     
-    
+    st.plotly_chart(fig)
+
+#----------------------------
     
     
