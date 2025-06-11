@@ -5,9 +5,9 @@ import plotly.express as px
 from PIL import Image
 import folium
 from streamlit_folium import folium_static
-import plotly.express as px
 
-rjson = "../data/data.json"
+
+rjson = "./data/data.json"
 
 inf = []
 
@@ -85,7 +85,7 @@ if not dia.empty:
     else:
         st.html("<h1 style= 'font-size: 20px '>😊 **Día tranquilo.** La residencia tuvo niveles de ruido bastante bajos. ¡Aprovecha para descansar!</h1>")
 
-    image = Image.open("../imagen/imagen4.jpg")
+    image = Image.open("./imagen/imagen4.jpg")
     st.image(image, use_container_width=True)
 
     st.markdown("---")
@@ -179,13 +179,13 @@ reconociendo cuándo ocurren situaciones inusuales y entendiendo mejor la dinám
     st.html(
         "<h4>Sonido de la sirena</h4>"
     )  
-    audio = open("../musica/camion-de-bomberos.mp3", "rb")
+    audio = open("./musica/camion-de-bomberos.mp3", "rb")
     st.audio(audio.read(), format="audio/mp3")
     
     st.html(
         "<h4>Sonido del portazo</h4>"
     )
-    # audio1 = open("../musica/.mp3", "rb")
+    # audio1 = open("./musica/.mp3", "rb")
     # st.audio(audio.read(), format="audio/mp3")
     
     
