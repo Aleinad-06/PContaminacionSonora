@@ -50,7 +50,9 @@ st.markdown("¿Alguna vez te has preguntado cómo suena el lugar donde vives? Ho
             "Selecciona una fecha del último mes y explora cómo varió el **nivel de ruido** en la "
             "**Residencia Estudiantil Bahía**, durante la mañana, tarde y noche.")
 
-date = st.date_input("Selecciona el día para explorar cómo se comportó el ruido", value=pd.to_datetime("2025-05-23"))
+date = st.date_input("""Selecciona el día para explorar cómo se comportó el ruido    
+                     ***Del 23 abr al 6 jun***""",
+                     value=pd.to_datetime("2025-05-23"))
 dia = df[df["fecha"].dt.date == date]
 
 
@@ -79,11 +81,11 @@ if not dia.empty:
 
     pico_maximo = datos["peak"].max()
     if pico_maximo >= 80:
-        st.html("<h1 style= 'font-size: 20px '>😡 **¡Día ruidoso!** El pico de ruido fue muy alto. Tal vez fue una fiesta o mucho tráfico.</h1>")
+        st.html("<h1 style= 'font-size: 20px ; color: #E6521F'>😡 **¡Día ruidoso!** El pico de ruido fue muy alto. Tal vez fue una fiesta o mucho tráfico.</h1>")
     elif pico_maximo >= 65:
-        st.html("<h1 style= 'font-size: 20px '>😐 **Nivel moderado.** El ruido estuvo presente, pero no fue extremo.</h1>")
+        st.html("<h1 style= 'font-size: 20px ; color: #FB9E3A'>😐 **Nivel moderado.** El ruido estuvo presente, pero no fue extremo.</h1>")
     else:
-        st.html("<h1 style= 'font-size: 20px '>😊 **Día tranquilo.** La residencia tuvo niveles de ruido bastante bajos. ¡Aprovecha para descansar!</h1>")
+        st.html("<h1 style= 'font-size: 20px ; color: #FCEF91'>😊 **Día tranquilo.** La residencia tuvo niveles de ruido bastante bajos. ¡Aprovecha para descansar!</h1>")
 
     image = Image.open("./imagen/imagen4.jpg")
     st.image(image, use_container_width=True)
@@ -101,7 +103,7 @@ else:
 #-----------------------
 
 
-st.html("<h2>⬇️Y porque no ver algo mas interesante⬇️</h2>")
+st.html("<h2 style='color: #FF7601' >⬇️Y porque no ver algo mas interesante⬇️</h2>")
 mostrar_analisis = st.button("Veamos los Análisis😲")
 
 if mostrar_analisis:
@@ -134,7 +136,7 @@ if mostrar_analisis:
 #---------------------
 
     df_grafico = df.pivot_table(index= "fecha", columns= "periodo", values= "maximo").reset_index()
-    st.subheader("Evolución de los Decibelelios Máximo por el Periodo del Día")
+    st.html("<h2 style='color: #F1EFEC; font-family: Times ; text-align: center'>Evolución de los Decibelelios Máximo por el Periodo del Día<h2>")
     st.area_chart(
         df_grafico.set_index("fecha"),
         use_container_width= True,
@@ -154,10 +156,12 @@ con la tarde como el tramo más ruidoso de forma sostenida.
 
 🎯 Objetivo: Visualizar cómo varían los niveles máximos de decibelios por período del día y
 detectar cuál de ellos tiende a registrar los valores más altos de forma sistemática.""")
+    
+    st.markdown("---")
 
 #-----------------------
 
-    st.subheader("📊Picos Máximos Registrados (peak)")
+    st.html("<h2 style='color: #F1EFEC; font-family: Times ; text-align: center'>📊Picos Máximos Registrados (peak)<h2>")
     st.line_chart(
         df.pivot_table(index= "fecha", columns= "periodo", values= "peak").reset_index().set_index("fecha"), 
         use_container_width= True,
@@ -188,10 +192,11 @@ reconociendo cuándo ocurren situaciones inusuales y entendiendo mejor la dinám
     # audio1 = open("./musica/.mp3", "rb")
     # st.audio(audio.read(), format="audio/mp3")
     
+    st.markdown("---")
     
 #-------------------------
     
-    st.subheader("Evolución de los Decibeleios mínimo por el Periodo del Día (minimo)")
+    st.html("<h2 style='color: #F1EFEC; font-family: Times ; text-align: center'>Evolución de los Decibeleios mínimo por el Periodo del Día (minimo)<h2>")
     st.line_chart(
         df.pivot_table(index= "fecha", columns= "periodo", values= "minimo").reset_index().set_index("fecha"),
         use_container_width= True,
@@ -213,6 +218,8 @@ En resumen, el gráfico evidencia que el ruido es constante y persistente durant
 🎯 Objetivo: Permitir al usuario identificar si existen momentos de verdadero silencio durante el día y
 comprender la persistencia del ruido ambiente, incluso en horarios tradicionalmente más tranquilos.""")
 
+    st.markdown("---") 
+       
 #-----------------------
 
     st.subheader("Resumen")
@@ -230,13 +237,8 @@ comprender la persistencia del ruido ambiente, incluso en horarios tradicionalme
         st.metric("Menor nivel registrado",
         f"{df.groupby("periodo")["minimo"].mean().idxmin()} ({(df.groupby("periodo")["minimo"].mean().min()):.1f} dB)")
     
-    st.markdown("""
-    **Leyenda:**
-    -  **Mañana:** 6:30 - 12:30
-    -  **Tarde:** 12:30 - 18:30
-    -  **Noche:** 18:30 - 6:30
-    """)
-
+    st.markdown("---")
+    
 #------------------------------
     
     condiciones = []
@@ -257,6 +259,7 @@ comprender la persistencia del ruido ambiente, incluso en horarios tradicionalme
     
     limites_por_periodo = df[df["supera_limites"]].groupby("periodo")["fecha"].nunique().reset_index(name="dias_superados")
 
+    st.html("<h2 style='color: #F1EFEC; font-family: Times ; text-align: center'>🌡️ Días en que se superaron los límites de ruido por período<h2>")
     fig = px.bar(
         limites_por_periodo,
         x="periodo",
@@ -267,7 +270,6 @@ comprender la persistencia del ruido ambiente, incluso en horarios tradicionalme
             "tarde": "#DC2525",   
             "noche": "#0B1D51" 
             },
-        title="🌡️ Días en que se superaron los límites de ruido por período",
         labels={"dias_superados": "Cantidad de días"}
     )
     st.plotly_chart(fig)
@@ -283,6 +285,9 @@ comprender la persistencia del ruido ambiente, incluso en horarios tradicionalme
 
     🎯 El objetivo es identificar en qué momentos del día el ambiente fue más ruidoso y si existe algún patrón recurrente de exposición a niveles sonoros potencialmente peligrosos.
     """)
+    
+    st.markdown("---")
+    
 #------------------------
 
     df_trend = df.groupby(["fecha", "periodo"])["promedio"].mean().reset_index()
@@ -290,14 +295,14 @@ comprender la persistencia del ruido ambiente, incluso en horarios tradicionalme
     df_trend["fecha"] = pd.to_datetime(df_trend["fecha"], format="%y-%m-%d")
     df_trend = df_trend.sort_values("fecha")
 
+    st.html("<h2 style='color: #F1EFEC; font-family: Times ; text-align: center'>📈 Tendencia del nivel promedio de ruido por período<h2>")
     fig = px.line(
         df_trend,
         x="fecha",
         y="promedio",
         color="periodo",
         markers=True,
-        line_shape="spline",  
-        title="📈 Tendencia del nivel promedio de ruido por período"
+        line_shape="spline"
     )
 
     
@@ -310,6 +315,24 @@ comprender la persistencia del ruido ambiente, incluso en horarios tradicionalme
     
     st.plotly_chart(fig)
 
+    st.markdown("""
+                Estuve midiendo el ruido en la Residencia durante más de un mes, en tres momentos: mañana, tarde y noche.
+Y este gráfico me lo confirmó: no hay silencio real… en ningún momento.
+
+🔵 En la mañana, el ruido sube y baja como una montaña rusa. Algunos días arranca tranquilo, otros parece que el día empieza con bocinas.
+
+🟡 La tarde es la campeona del escándalo. Hay picos por encima de los 70 dB —eso equivale a tener tráfico intenso todo el tiempo. Sí, así como lo oyes (o lo sufres).
+
+🟣 La noche decepciona. Pensé que sería el momento de más calma, pero se mantiene firme sobre los 55 dB. El descanso, al parecer, también tiene banda sonora.
+
+📉 Lo que más me impactó es que no hay un solo día donde el ruido baje realmente. Siempre hay algo sonando, pitando, zumbando… aunque no lo registremos.
+
+🎯 ¿Qué buscaba con esto? Saber si había momentos de verdadero silencio.
+Y la respuesta fue clara: no los hay.
+                """)
+    
+    st.markdown("---")
+    
 #----------------------------
     
     

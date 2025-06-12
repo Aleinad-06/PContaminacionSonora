@@ -10,7 +10,7 @@ Concientizar a las personas que conviven en la residencia sobre el impacto que t
 🧰 ¿Qué encontrarás aquí?
 
 - 📊 **Análisis de datos reales** sobre el ruido en la residencia.
-- 🎮 **Juego educativo interactivo** donde podrás convertirte en un "detective del ruido".
+- [🎮 **Juego educativo interactivo** donde podrás convertirte en un "detective del ruido".](https://juegoo.streamlit.app)
 - 🎥 **Video explicativo** que narra esta historia con datos, imágenes y soluciones.
 - 🌐 Página web con acceso directo a cada componente del proyecto.
   

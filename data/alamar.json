@@ -1,0 +1,423 @@
+[
+    {
+    "tiempo": {
+      "fecha": "2025-4-30",
+      "dia_semana": "Miercoles"
+    },
+    "ubicacion": {
+      "nombre": "Residencia Estudiantil Bahia",
+      "pista": "El único lugar donde puedes escuchar tres tipos de música al mismo ,tiempo… desde la misma habitación.",
+      "coordenadas": {
+        "lat": 23.1468653,
+        "lon": -82.3016635
+      }
+    },
+    "horarios": [
+      {
+        "periodo": "mañana",
+        "mediciones": {
+          "promedio": 61.5,
+          "minimo": 48.0,
+          "maximo": 77.3,
+          "peak": 80.7
+        }
+      },
+      {
+        "periodo": "tarde",
+        "mediciones": {
+          "promedio": 58.0,
+          "minimo": 45.4,
+          "maximo": 67.5,
+          "peak": 76.5
+        }
+      },
+      {
+        "periodo": "noche",
+        "mediciones": {
+          "promedio": 58.4,
+          "minimo": 45.4,
+          "maximo": 75.5,
+          "peak": 87.3
+        }
+      }
+    ]
+  },{
+    "tiempo": {
+      "fecha": "2025-05-02",
+      "dia_semana": "Viernes"
+    },
+    "ubicacion": {
+      "nombre": "Residencia Estudiantil Bahia",
+      "pista": "El único lugar donde puedes escuchar tres tipos de música al mismo ,tiempo… desde la misma habitación.",
+      "coordenadas": {
+        "lat": 23.1468653,
+        "lon": -82.3016635
+      }
+    },
+    "horarios": [
+      {
+        "periodo": "mañana",
+        "mediciones": {
+          "promedio": 61.5,
+          "minimo": 48.0,
+          "maximo": 77.3,
+          "peak": 80.7
+        }
+      },
+      {
+        "periodo": "tarde",
+        "mediciones": {
+          "promedio": 58.0,
+          "minimo": 45.4,
+          "maximo": 67.5,
+          "peak": 76.5
+        }
+      },
+      {
+        "periodo": "noche",
+        "mediciones": {
+          "promedio": 58.4,
+          "minimo": 45.4,
+          "maximo": 75.5,
+          "peak": 87.3
+        }
+      }
+    ]
+  },{
+    "tiempo": {
+      "fecha": "2025-05-03",
+      "dia_semana": "Sabado"
+    },
+    "ubicacion": {
+      "nombre": "Residencia Estudiantil Bahia",
+      "pista": "El único lugar donde puedes escuchar tres tipos de música al mismo ,tiempo… desde la misma habitación.",
+      "coordenadas": {
+        "lat": 23.1468653,
+        "lon": -82.3016635
+      }
+    },
+    "horarios": [
+      {
+        "periodo": "mañana",
+        "mediciones": {
+          "promedio": 61.5,
+          "minimo": 48.0,
+          "maximo": 77.3,
+          "peak": 80.7
+        }
+      },
+      {
+        "periodo": "tarde",
+        "mediciones": {
+          "promedio": 58.0,
+          "minimo": 45.4,
+          "maximo": 67.5,
+          "peak": 76.5
+        }
+      },
+      {
+        "periodo": "noche",
+        "mediciones": {
+          "promedio": 58.4,
+          "minimo": 45.4,
+          "maximo": 75.5,
+          "peak": 87.3
+        }
+      }
+    ]
+  },{
+    "tiempo": {
+      "fecha": "2025-05-05",
+      "dia_semana": "Lunes"
+    },
+    "ubicacion": {
+      "nombre": "Residencia Estudiantil Bahia",
+      "pista": "El único lugar donde puedes escuchar tres tipos de música al mismo ,tiempo… desde la misma habitación.",
+      "coordenadas": {
+        "lat": 23.1468653,
+        "lon": -82.3016635
+      }
+    },
+    "horarios": [
+      {
+        "periodo": "mañana",
+        "mediciones": {
+          "promedio": 61.5,
+          "minimo": 48.0,
+          "maximo": 77.3,
+          "peak": 80.7
+        }
+      },
+      {
+        "periodo": "tarde",
+        "mediciones": {
+          "promedio": 58.0,
+          "minimo": 45.4,
+          "maximo": 67.5,
+          "peak": 76.5
+        }
+      },
+      {
+        "periodo": "noche",
+        "mediciones": {
+          "promedio": 58.4,
+          "minimo": 45.4,
+          "maximo": 75.5,
+          "peak": 87.3
+        }
+      }
+    ]
+  },{
+    "tiempo": {
+      "fecha": "2025-05-07",
+      "dia_semana": "Miercoles"
+    },
+    "ubicacion": {
+      "nombre": "Residencia Estudiantil Bahia",
+      "pista": "El único lugar donde puedes escuchar tres tipos de música al mismo ,tiempo… desde la misma habitación.",
+      "coordenadas": {
+        "lat": 23.1468653,
+        "lon": -82.3016635
+      }
+    },
+    "horarios": [
+      {
+        "periodo": "mañana",
+        "mediciones": {
+          "promedio": 61.5,
+          "minimo": 48.0,
+          "maximo": 77.3,
+          "peak": 80.7
+        }
+      },
+      {
+        "periodo": "tarde",
+        "mediciones": {
+          "promedio": 58.0,
+          "minimo": 45.4,
+          "maximo": 67.5,
+          "peak": 76.5
+        }
+      },
+      {
+        "periodo": "noche",
+        "mediciones": {
+          "promedio": 58.4,
+          "minimo": 45.4,
+          "maximo": 75.5,
+          "peak": 87.3
+        }
+      }
+    ]
+  },{
+    "tiempo": {
+      "fecha": "2025-05-09",
+      "dia_semana": "Viernes"
+    },
+    "ubicacion": {
+      "nombre": "Residencia Estudiantil Bahia",
+      "pista": "El único lugar donde puedes escuchar tres tipos de música al mismo ,tiempo… desde la misma habitación.",
+      "coordenadas": {
+        "lat": 23.1468653,
+        "lon": -82.3016635
+      }
+    },
+    "horarios": [
+      {
+        "periodo": "mañana",
+        "mediciones": {
+          "promedio": 61.5,
+          "minimo": 48.0,
+          "maximo": 77.3,
+          "peak": 80.7
+        }
+      },
+      {
+        "periodo": "tarde",
+        "mediciones": {
+          "promedio": 58.0,
+          "minimo": 45.4,
+          "maximo": 67.5,
+          "peak": 76.5
+        }
+      },
+      {
+        "periodo": "noche",
+        "mediciones": {
+          "promedio": 58.4,
+          "minimo": 45.4,
+          "maximo": 75.5,
+          "peak": 87.3
+        }
+      }
+    ]
+  },{
+    "tiempo": {
+      "fecha": "2025-05-10",
+      "dia_semana": "Sabado"
+    },
+    "ubicacion": {
+      "nombre": "Residencia Estudiantil Bahia",
+      "pista": "El único lugar donde puedes escuchar tres tipos de música al mismo ,tiempo… desde la misma habitación.",
+      "coordenadas": {
+        "lat": 23.1468653,
+        "lon": -82.3016635
+      }
+    },
+    "horarios": [
+      {
+        "periodo": "mañana",
+        "mediciones": {
+          "promedio": 61.5,
+          "minimo": 48.0,
+          "maximo": 77.3,
+          "peak": 80.7
+        }
+      },
+      {
+        "periodo": "tarde",
+        "mediciones": {
+          "promedio": 58.0,
+          "minimo": 45.4,
+          "maximo": 67.5,
+          "peak": 76.5
+        }
+      },
+      {
+        "periodo": "noche",
+        "mediciones": {
+          "promedio": 58.4,
+          "minimo": 45.4,
+          "maximo": 75.5,
+          "peak": 87.3
+        }
+      }
+    ]
+  },{
+    "tiempo": {
+      "fecha": "2025-05-12",
+      "dia_semana": "Lunes"
+    },
+    "ubicacion": {
+      "nombre": "Residencia Estudiantil Bahia",
+      "pista": "El único lugar donde puedes escuchar tres tipos de música al mismo ,tiempo… desde la misma habitación.",
+      "coordenadas": {
+        "lat": 23.1468653,
+        "lon": -82.3016635
+      }
+    },
+    "horarios": [
+      {
+        "periodo": "mañana",
+        "mediciones": {
+          "promedio": 61.5,
+          "minimo": 48.0,
+          "maximo": 77.3,
+          "peak": 80.7
+        }
+      },
+      {
+        "periodo": "tarde",
+        "mediciones": {
+          "promedio": 58.0,
+          "minimo": 45.4,
+          "maximo": 67.5,
+          "peak": 76.5
+        }
+      },
+      {
+        "periodo": "noche",
+        "mediciones": {
+          "promedio": 58.4,
+          "minimo": 45.4,
+          "maximo": 75.5,
+          "peak": 87.3
+        }
+      }
+    ]
+  },{
+    "tiempo": {
+      "fecha": "2025-05-14",
+      "dia_semana": "Miercoles"
+    },
+    "ubicacion": {
+      "nombre": "Residencia Estudiantil Bahia",
+      "pista": "El único lugar donde puedes escuchar tres tipos de música al mismo ,tiempo… desde la misma habitación.",
+      "coordenadas": {
+        "lat": 23.1468653,
+        "lon": -82.3016635
+      }
+    },
+    "horarios": [
+      {
+        "periodo": "mañana",
+        "mediciones": {
+          "promedio": 61.5,
+          "minimo": 48.0,
+          "maximo": 77.3,
+          "peak": 80.7
+        }
+      },
+      {
+        "periodo": "tarde",
+        "mediciones": {
+          "promedio": 58.0,
+          "minimo": 45.4,
+          "maximo": 67.5,
+          "peak": 76.5
+        }
+      },
+      {
+        "periodo": "noche",
+        "mediciones": {
+          "promedio": 58.4,
+          "minimo": 45.4,
+          "maximo": 75.5,
+          "peak": 87.3
+        }
+      }
+    ]
+  },{
+    "tiempo": {
+      "fecha": "2025-05-16",
+      "dia_semana": "Viernes"
+    },
+    "ubicacion": {
+      "nombre": "Residencia Estudiantil Bahia",
+      "pista": "El único lugar donde puedes escuchar tres tipos de música al mismo ,tiempo… desde la misma habitación.",
+      "coordenadas": {
+        "lat": 23.1468653,
+        "lon": -82.3016635
+      }
+    },
+    "horarios": [
+      {
+        "periodo": "mañana",
+        "mediciones": {
+          "promedio": 61.5,
+          "minimo": 48.0,
+          "maximo": 77.3,
+          "peak": 80.7
+        }
+      },
+      {
+        "periodo": "tarde",
+        "mediciones": {
+          "promedio": 58.0,
+          "minimo": 45.4,
+          "maximo": 67.5,
+          "peak": 76.5
+        }
+      },
+      {
+        "periodo": "noche",
+        "mediciones": {
+          "promedio": 58.4,
+          "minimo": 45.4,
+          "maximo": 75.5,
+          "peak": 87.3
+        }
+      }
+    ]
+  }
+]
