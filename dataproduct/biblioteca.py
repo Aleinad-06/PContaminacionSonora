@@ -124,20 +124,7 @@ def plot_max_noise_evolution(df_ubinombre):
             height=400
         )
         
-        st.markdown("""Durante el periodo observado, se evidencian variaciones notables en los niveles máximos de ruido según el momento del día.
-                    
-🔵 La tarde domina con los picos más constantes y elevados, lo que sugiere una actividad intensa en ese horario.
-
-🔴 La noche presenta algunos picos aislados, probablemente asociados a eventos puntuales o comportamientos anómalos.
-
-🟠 La mañana muestra fluctuaciones irregulares, aunque generalmente por debajo de los niveles de la tarde.
-
-Este comportamiento indica que el ruido ambiental varía significativamente según el período del día,
-con la tarde como el tramo más ruidoso de forma sostenida.
-
-🎯 Objetivo: Visualizar cómo varían los niveles máximos de decibelios por período del día y
-detectar cuál de ellos tiende a registrar los valores más altos de forma sistemática.""")
-
+        
 def plot_peak_noise(df_ubinombre):
     """Grafica los picos máximos de ruido registrados"""
     st.html("<h2 style='color: #F1EFEC; font-family: Times ; text-align: center'>📊Picos Máximos Registrados (peak)<h2>")
@@ -147,17 +134,6 @@ def plot_peak_noise(df_ubinombre):
         color=["#EA047E", "#FF6D28", "#FCE700"],
         height=400
     )
-    
-    st.markdown("""Los valores más altos de decibelios (picos) varían diariamente, con algunas fechas destacando por registrar niveles extremos.
-
-💥 La tarde nuevamente sobresale con varios picos por encima de los 100 dB, lo cual sugiere eventos anómalos o momentos de alta actividad.
-
-🌙 La noche y la mañana presentan también algunos valores elevados, lo que refuerza la idea de que los picos no siempre ocurren en horarios previsibles.
-
-📌 Este análisis ayuda a detectar eventos atípicos o peligrosos para la salud auditiva, incluso si solo duran unos segundos.
-
-🎯 Objetivo: Que el usuario pueda observar con más detalle el comportamiento de los picos sonoros por día, 
-reconociendo cuándo ocurren situaciones inusuales y entendiendo mejor la dinámica real del ruido en su entorno.""")
     
     st.html("<h4>Sonido de la sirena</h4>")  
     audio = open("./musica/camion-de-bomberos.mp3", "rb")
@@ -177,20 +153,6 @@ def plot_min_noise_evolution(df_ubinombre):
         color=["#323EDD","#DC2ADE","#E8F044"],
         height=400
     )
-
-    st.markdown("""Los niveles mínimos de decibeles se mantienen elevados a lo largo del periodo analizado,
-                sin registrar caídas notables que indiquen momentos de verdadero silencio.
-                
-🔵 En la mañana se observan más fluctuaciones, destacando una leve baja el 23 de mayo (42 dB), posiblemente reflejando un instante de menor actividad.
-
-🟣 La noche, sorprendentemente, no es la más silenciosa, manteniéndose cerca de los 50 dB de forma constante.
-
-🟡 La tarde varía más, pero tampoco desciende a niveles bajos.
-
-En resumen, el gráfico evidencia que el ruido es constante y persistente durante todos los períodos del día.
-
-🎯 Objetivo: Permitir al usuario identificar si existen momentos de verdadero silencio durante el día y
-comprender la persistencia del ruido ambiente, incluso en horarios tradicionalmente más tranquilos.""")
 
 def show_summary_metrics(df):
     """Muestra las métricas resumen"""
@@ -244,18 +206,6 @@ def plot_noise_limits(df):
     )
     st.plotly_chart(fig)
 
-    st.markdown("""
-    📌 Este gráfico muestra ***cuántas veces se superaron los niveles de ruido saludables***,
-    según la OMS, para cada período del día: 
-    (Teniendo una gran incidencia en la "mañana" y en la "noche")
-
-    - **🌅 Mañana**: límite 55 dB
-    - **🌞 Tarde**: límite 65 dB
-    - **🌙 Noche**: límite 45 dB
-
-    🎯 El objetivo es identificar en qué momentos del día el ambiente fue más ruidoso y si existe algún patrón recurrente de exposición a niveles sonoros potencialmente peligrosos.
-    """)
-
 def plot_trend_noise(df_ubinombre):
     """Grafica la tendencia del nivel promedio de ruido"""
     df_trend = df_ubinombre.groupby(["fecha", "periodo"])["promedio"].mean().reset_index()
@@ -281,122 +231,5 @@ def plot_trend_noise(df_ubinombre):
     
     st.plotly_chart(fig)
 
-    st.markdown("""
-                Estuve midiendo el ruido en la Residencia durante más de un mes, en tres momentos: mañana, tarde y noche.
-Y este gráfico me lo confirmó: no hay silencio real… en ningún momento.
+    
 
-🔵 En la mañana, el ruido sube y baja como una montaña rusa. Algunos días arranca tranquilo, otros parece que el día empieza con bocinas.
-
-🟡 La tarde es la campeona del escándalo. Hay picos por encima de los 70 dB —eso equivale a tener tráfico intenso todo el tiempo. Sí, así como lo oyes (o lo sufres).
-
-🟣 La noche decepciona. Pensé que sería el momento de más calma, pero se mantiene firme sobre los 55 dB. El descanso, al parecer, también tiene banda sonora.
-
-📉 Lo que más me impactó es que no hay un solo día donde el ruido baje realmente. Siempre hay algo sonando, pitando, zumbando… aunque no lo registremos.
-
-🎯 ¿Qué buscaba con esto? Saber si había momentos de verdadero silencio.
-Y la respuesta fue clara: no los hay.
-                """)
-
-def plot_comparison_residencia_alamar(df):
-    """Compara los niveles de ruido entre la residencia y Alamar"""
-    df["fecha"] = pd.to_datetime(df["fecha"])
-
-    fecha_inicio = pd.to_datetime("2025-05-02")
-    fecha_final = pd.to_datetime("2025-05-17")
-
-    todo = ["Alamar", "Residencia Estudiantil Bahia"]
-    todos = []
-
-    for ubic in todo:
-        todos.append(
-            df[
-                (df["ubicacion"] == ubic) &
-                (df["fecha"] >= fecha_inicio) &
-                (df["fecha"] <= fecha_final)
-            ]
-            .groupby(["periodo"])["promedio"]
-            .mean()
-            .reset_index()
-            .assign(ubicacion=ubic)
-        )
-
-    if todos:
-        df_final = pd.concat(todos, ignore_index=True)
-        
-        st.html("<h2 style='color: #F1EFEC; font-family: Times ; text-align: center'>Comparación entre la Residencia y Alamar</h2>")
-
-        fig = px.bar(
-            df_final,
-            x="periodo",
-            y="promedio",
-            color="periodo",
-            color_discrete_map={
-                "mañana": "#16610E",  
-                "tarde": "#F97A00",   
-                "noche": "#FED16A" 
-            },
-            facet_col="ubicacion"
-        )
-        fig.update_xaxes(title_text="Períodos")
-
-        fig.for_each_annotation(lambda a: a.update(text=a.text.split("=")[-1]))
-
-        fig.update_layout(
-            xaxis_title="Períodos",
-            yaxis_title="Nivel de ruido (dB)",
-            legend_title="Período del día",
-            template="plotly_white"
-        )
-
-        st.plotly_chart(fig)
-
-    st.markdown("""
-                🔎 ¿Qué estamos viendo aquí?
-
-Este gráfico compara los niveles de ruido registrados en dos lugares clave durante el mismo período de tiempo:
-📍 Alamar y 📍 la Residencia Estudiantil Bahía.
-
-La medición en Alamar se hizo cerca de la beca que está allá, o sea, bastante cerca del entorno donde viven estudiantes también.
-
-La idea fue tomar 10 días (del 2 al 17 de mayo de 2025) y mirar cómo se comporta el ruido en esos lugares durante tres momentos del día:
-🌅 mañana, ☀️ tarde y 🌙 noche.
-
-🎯 Mi objetivo fue ver cómo se comporta el ruido en estos dos lugares durante el día.
-Quería responder preguntas como:
-
-— ¿Dónde hay más ruido?
-
-— ¿Hay momentos más críticos en alguna de las dos ubicaciones?
-
-💥 En resumen, busco entender cómo el entorno sonoro afecta la vida cotidiana, especialmente en lugares donde vivimos estudiantes.
-                    """)
-
-def plot_weekly_trend(residencia):
-    """Grafica la tendencia semanal del ruido"""
-    residencia["dia_semana"] = residencia["fecha"].dt.day_name()
-    residencia["semana"] = residencia["fecha"].dt.isocalendar().week
-    residencia["dia_semana"] = pd.Categorical(residencia["dia_semana"], ordered=True)
-
-    resumen = residencia.groupby(["semana", "dia_semana"])["promedio"].mean().reset_index()
-
-    fig = px.bar(
-        resumen,
-        x="dia_semana",
-        y="promedio",
-        color="semana",
-        barmode="group",
-        title="🔊 Tendencia semanal del ruido según el día de la semana\nResidencia Estudiantil (todas las semanas)",
-        labels={"dia_semana": "Días", "promedio": "Promedio de ruido (dB)", "semana": "Semana"},
-        color_discrete_sequence=px.colors.qualitative.Vivid
-    )
-
-    fig.update_layout(
-        template="plotly_dark",
-        xaxis_tickangle=-30,
-        title_font_size=18,
-        font=dict(size=14),
-        plot_bgcolor="rgba(0,0,0,0)",
-        paper_bgcolor="rgba(0,0,0,0)"
-    )
-
-    st.plotly_chart(fig, use_container_width=True)
