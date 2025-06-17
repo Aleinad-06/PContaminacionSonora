@@ -4,7 +4,6 @@ import json
 import random
 from PIL import Image
 import pydeck as pdk
-import os
 
 # ----------------------
 
@@ -100,7 +99,7 @@ df_todas_ubicaciones = pd.concat([df_ubicaciones, df_ubicaciones_extra], ignore_
 
 if not st.session_state.inicio:
     st.markdown(""" ## 🕵️‍♂️ ¡Hola, Detective del Ruido!
-🔊 ¿Escuchaste eso? No, no fue tu barriga... ¡es la ciudad gritando!
+🔊 ¿Escuchaste eso? No, no fue tu barriga.. ¡es la ciudad gritando!
 
 🎧 Hoy vas a usar tus súper oídos para investigar distintos rincones de La Habana y detectar cuáles tienen mayor contaminación sonora.
 
@@ -108,7 +107,7 @@ if not st.session_state.inicio:
 
 🏆 Gana puntos, responde preguntas y conviértete en Maestro en Bulla.
 
-🔔 ¡El ruido no descansa... y tú tampoco!
+🔔 ¡El ruido no descansa.. y tú tampoco!
     """)
     audio = open("./musica/audio1.mp3", "rb")
     st.audio(audio.read(), format="audio/mp3")
@@ -184,17 +183,6 @@ else:
 
         st.info(f"🔊 Nivel de ruido en {correcta}: {promedios[correcta]:.2f} dB")
 
-        audio_nombre = next((p["audio"].strip() for p in preguntas if p["respuesta"] == correcta and "audio" in p), None)
-        if audio_nombre:
-            ruta_audio = f"./musica/{audio_nombre}"
-            if os.path.exists(ruta_audio):
-                with open(ruta_audio, "rb") as audio_r:
-                    st.audio(audio_r.read(), format="audio/mp3")
-            else:
-                st.warning(f"No se encontró el archivo de audio: {ruta_audio}")
-        else:
-            st.warning("No se encontró un audio para esta ubicación.")
-
         st.markdown(f"### 🏆 Puntaje actual: {st.session_state['puntaje']}")
         st.markdown("---")
 
@@ -236,9 +224,13 @@ else:
                 else:
                     st.warning("Incorrecto. Pista: " + pregunta_actual["pista"])
 
-                # st.audio(f"./audios/{pregunta_actual['audio']}")
-                # st.experimental_rerun()  
-
+                if 'audio_reproducido' not in st.session_state:
+                    st.audio(f"./musica/{pregunta_actual['audio']}")
+                    st.session_state.audio_reproducido = True
+                    st.stop() 
+                else:
+                    st.warning("🔇 Audio no disponible para esta pregunta.")
+                    
     # ----------------------
 
         elif pregunta_actual is None:
