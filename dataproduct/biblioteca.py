@@ -82,7 +82,7 @@ def plot_daily_noise(df, date):
         image = Image.open("./imagen/imagen4.jpg")
         st.image(image, use_container_width=True)
 
-        st.markdown("---")
+        st.divider()
         st.markdown("🧩 ¿Te sorprendió lo que viste? Este es solo **un día** en la vida sonora de la residencia. "
                     "Imagina todo lo que podríamos descubrir si más personas se suman a escuchar el entorno.")
         st.markdown("👉 Sigue explorando el ruido. ¡La ciencia también se escucha!")

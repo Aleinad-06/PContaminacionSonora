@@ -109,7 +109,7 @@ if not st.session_state.inicio:
 
 🔔 ¡El ruido no descansa.. y tú tampoco!
     """)
-    audio = open("./musica/audio1.mp3", "rb")
+    audio = open("./musica/inicio.mp3", "rb")
     st.audio(audio.read(), format="audio/mp3")
     
     if st.button("🕵️ Comenzar la misión"):
@@ -184,7 +184,7 @@ else:
         st.info(f"🔊 Nivel de ruido en {correcta}: {promedios[correcta]:.2f} dB")
 
         st.markdown(f"### 🏆 Puntaje actual: {st.session_state['puntaje']}")
-        st.markdown("---")
+        st.divider()
 
 
 # ----------------------

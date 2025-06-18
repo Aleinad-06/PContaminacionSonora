@@ -20,7 +20,7 @@
     "opciones": ["Llover en silencio", "Música a volumen alto en el transporte público", "Un árbol creciendo"],
     "respuesta": "Música a volumen alto en el transporte público",
     "pista": "Una acción cotidiana que puede molestar a muchos en espacios cerrados.",
-    "audio": "transporte_musica.mp3",
+    "audio": "No existe",
     "valor": 5
   },
   {
@@ -28,7 +28,7 @@
     "opciones": ["Estrés y problemas de sueño", "Mejora de la concentración", "Aumento de la felicidad"],
     "respuesta": "Estrés y problemas de sueño",
     "pista": "No solo molesta, también te quita el sueño.",
-    "audio": "estres_sonoro.mp3",
+    "audio": "estres.mp3",
     "valor": 5
   },
   {
@@ -36,7 +36,7 @@
     "opciones": ["Usar tapones para los oídos", "Escuchar más fuerte", "Ignorar el ruido"],
     "respuesta": "Usar tapones para los oídos",
     "pista": "Una pequeña barrera puede hacer una gran diferencia.",
-    "audio": "proteger_oido.mp3",
+    "audio": "No existe",
     "valor": 5
   },
   {
@@ -84,7 +84,7 @@
     "opciones": ["Mejora la concentración", "Provoca estrés y problemas de sueño", "Aumenta la felicidad de las personas"],
     "respuesta": "Provoca estrés y problemas de sueño",
     "pista": "Un lugar donde descansar debería ser fácil, pero no lo es.",
-    "audio": "avenida_estrés.mp3",
+    "audio": "trafico_cuidad.mp3",
     "valor": 5
   },
   {
@@ -100,7 +100,7 @@
     "opciones": ["85 dB", "95 dB", "105 dB"],
     "respuesta": "85 dB",
     "pista": "No parece mucho, pero con el tiempo te afecta.",
-    "audio": "exposicion_larga.mp3",
+    "audio": "pitido.mp3",
     "valor": 5
   },
   {
@@ -108,7 +108,7 @@
     "opciones": ["Mejora la respiración", "Aumenta el riesgo de problemas cardiovasculares", "Reduce el estrés y la ansiedad"],
     "respuesta": "Aumenta el riesgo de problemas cardiovasculares",
     "pista": "El corazón también escucha.",
-    "audio": "trafico_corazon.mp3",
+    "audio": "corazon.mp3",
     "valor": 5
   },
   {
@@ -124,7 +124,7 @@
     "opciones": ["Escuchar música muy alta para tapar el ruido", "Usar tapones para los oídos o auriculares con cancelación de ruido", "Ignorar el ruido y seguir trabajando"],
     "respuesta": "Usar tapones para los oídos o auriculares con cancelación de ruido",
     "pista": "La protección auditiva también es prevención.",
-    "audio": "cancelacion_sonido.mp3",
+    "audio": "No existe",
     "valor": 5
   },
   {
@@ -132,7 +132,7 @@
     "opciones": ["Por la mañana temprano", "Durante el mediodía", "Por la noche cuando la gente duerme"],
     "respuesta": "Por la noche cuando la gente duerme",
     "pista": "Cuando más necesitas silencio, el ruido puede hacer más daño.",
-    "audio": "suenio_interrumpido.mp3",
+    "audio": "No existe",
     "valor": 5
   }
 ]

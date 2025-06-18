@@ -2,12 +2,10 @@ import pandas as pd
 import streamlit as st
 import json
 import plotly.express as px
-from PIL import Image
-import folium
-from streamlit_folium import folium_static
-import datetime as po
-import matplotlib.pyplot as plt
+from plotly.subplots import make_subplots
+import plotly.graph_objects as go
 
+st.set_page_config(layout="wide")
 rjson = "./data/data.json"
 
 inf = []
@@ -43,22 +41,22 @@ for i in inf:
 
 df = pd.DataFrame(data)
 
+st.html("<h1 style= 'color: #E9A319; font-family: Times: text-agoin: center; font-size: 50px'>🌞 Bahía  vs. 🌙 Alamar: Dónde Reside el Ruido❓Serán 🌞 o 🌙 </h1>")
+
 df["fecha"] = pd.to_datetime(df["fecha"])
 
 fecha_inicio = pd.to_datetime("2025-05-02")
 fecha_final = pd.to_datetime("2025-05-17")
 
-todo = ["Alamar", "Residencia Estudiantil Bahia"]
+df_filtrado = df[(df["fecha"] >= fecha_inicio) & (df["fecha"] <= fecha_final)]
+
+todo = ["Residencia Estudiantil Alamar", "Residencia Estudiantil Bahia"]
 todos = []
 
 for ubic in todo:
     todos.append(
-        df[
-            (df["ubicacion"] == ubic) &
-            (df["fecha"] >= fecha_inicio) &
-            (df["fecha"] <= fecha_final)
-        ]
-        .groupby(["periodo"])["promedio"]
+        df_filtrado[df_filtrado["ubicacion"] == ubic]
+        .groupby(["periodo"])["peak"]
         .mean()
         .reset_index()
         .assign(ubicacion=ubic)
@@ -67,13 +65,13 @@ for ubic in todo:
 if todos:
     df_final = pd.concat(todos, ignore_index=True)
     
-    st.html("<h2 style='color: #F1EFEC; font-family: Times ; text-align: center'>Comparación entre la Residencia y Alamar</h2>")
+    st.html("<h2 style='color: #F1EFEC; font-family: Times ; text-align: center'>^_~👌Comportamiento de los picos entre las Residencias</h2>")
 
     
     fig = px.bar(
         df_final,
         x="periodo",
-        y="promedio",
+        y="peak",
         color="periodo",
         color_discrete_map={
             "mañana": "#16610E",  
@@ -115,40 +113,110 @@ Quería responder preguntas como:
 
 💥 En resumen, busco entender cómo el entorno sonoro afecta la vida cotidiana, especialmente en lugares donde vivimos estudiantes.
                 """)
-st.markdown("---")
+st.divider()
         
 #---------------------
 
-df["fecha"] = pd.to_datetime(df["fecha"])
+bahia = df_filtrado[df_filtrado["ubicacion"] == "Residencia Estudiantil Bahia"].copy()
+alamar = df_filtrado[df_filtrado["ubicacion"] == "Residencia Estudiantil Alamar"].copy()
 
-residencia = df[df["ubicacion"] == "Residencia Estudiantil Bahia"]
+def procesar_residencia(data):
+    data["dia_semana"] = data["fecha"].dt.day_name(locale='es_ES').str.capitalize()
+    data["semana"] = data["fecha"].dt.isocalendar().week
+    dias_orden = ['Lunes','Miércoles', 'Viernes', 'Sábado']
+    data["dia_semana"] = pd.Categorical(data["dia_semana"], categories=dias_orden)
+    return data
 
-residencia["dia_semana"] = residencia["fecha"].dt.day_name()
-residencia["semana"] = residencia["fecha"].dt.isocalendar().week
+bahia = procesar_residencia(bahia)
+alamar = procesar_residencia(alamar)
+print(alamar)
+with st.expander("🔍 Análisis Comparativo Completo"):
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        resumen_bahia = bahia.groupby(["semana", "dia_semana"])["promedio"].mean().reset_index()
+        
+        fig_bahia = px.bar(resumen_bahia, 
+                           x="dia_semana",
+                           y="promedio",
+                           color="semana",
+                           barmode="group",
+                           title="🔊 Residencia Bahía - Tendencia semanal por día",
+                           labels={"dia_semana": "Día", "promedio": "Promedio (dB)", "semana": "Semana"},
+                           color_continuous_scale=px.colors.sequential.Viridis)
+        
+        fig_bahia.update_layout(template="plotly_dark", xaxis_tickangle=-45, height=500)
+        st.plotly_chart(fig_bahia, use_container_width=True)
 
-residencia["dia_semana"] = pd.Categorical(residencia["dia_semana"],  ordered=True)
+        heatmap_data = bahia.pivot_table(index='dia_semana',
+                                         columns='periodo',
+                                         values='promedio', 
+                                         aggfunc='mean')
+        
+        fig_heat = px.imshow(heatmap_data, labels=dict(x="Período",
+                                                        y="Día",
+                                                        color="Decibeles"),
+                                                        title="🕒 Patrones horarios - Residencia Bahía", 
+                                                        color_continuous_scale='thermal')
+        
+        st.plotly_chart(fig_heat, use_container_width=True)
 
-resumen = residencia.groupby(["semana", "dia_semana"])["promedio"].mean().reset_index()
+    with col2:
+        resumen_alamar = alamar.groupby(["semana", "dia_semana"])["promedio"].mean().reset_index()
+        
+        fig_alamar = px.bar(resumen_alamar,
+                            x="dia_semana", 
+                            y="promedio",
+                            color="semana",
+                            barmode="group",
+                            title="🔇 Residencia Alamar - Tendencia semanal por día",
+                            labels={"dia_semana": "Día", "promedio": "Promedio (dB)", "semana": "Semana"},
+                            color_continuous_scale=px.colors.sequential.Pinkyl)
+        
+        fig_alamar.update_layout(template="plotly_dark", xaxis_tickangle=-45, height=500)
+        st.plotly_chart(fig_alamar, use_container_width=True)
 
-fig = px.bar(
-    resumen,
-    x="dia_semana",
-    y="promedio",
-    color="semana",
-    barmode="group",
-    title="🔊 Tendencia semanal del ruido según el día de la semana\nResidencia Estudiantil (todas las semanas)",
-    labels={"dia_semana": "Días", "promedio": "Promedio de ruido (dB)", "semana": "Semana"},
-    color_discrete_sequence=px.colors.qualitative.Vivid
-)
+        heatmap_data_alamar = alamar.pivot_table(index='dia_semana', 
+                                                 columns='periodo', 
+                                                 values='promedio', 
+                                                 aggfunc='mean')
+        
+        fig_heat_alamar = px.imshow(heatmap_data_alamar, labels=dict(x="Período",
+                                                                    y="Día", 
+                                                                    color="Decibeles"),
+                                                                    title="🕒 Patrones horarios - Residencia Alamar", 
+                                                                    color_continuous_scale='ice')
+        
+        st.plotly_chart(fig_heat_alamar, use_container_width=True)
 
-fig.update_layout(
-    template="plotly_dark",
-    xaxis_tickangle=-30,
-    title_font_size=18,
-    font=dict(size=14),
-    plot_bgcolor="rgba(0,0,0,0)",
-    paper_bgcolor="rgba(0,0,0,0)"
-)
 
-st.plotly_chart(fig, use_container_width=True)
+with st.expander("📊 Análisis Estadístico Comparativo"):
+    st.html("<h1  style='color: #0065F8; font-family: Times ; text-align: center'>Comparación estadística entre <span style='color: #B6F500'>Residencias<span></h1>")
+    stats_bahia = bahia['promedio'].describe().rename('Bahía').agg(["count","mean", "min", "50%", "max"])
+    stats_alamar = alamar['promedio'].describe().rename('Alamar').agg(["count","mean", "min", "50%", "max"])
+    stats_comparativas = pd.concat([stats_bahia, stats_alamar], axis=1)
+    st.dataframe(stats_comparativas.style.format("{:.2f}").background_gradient(cmap='Blues'))
 
+    fig_dist = px.box(pd.concat([bahia.assign(Residencia="Bahía"), 
+                                 alamar.assign(Residencia="Alamar")]),
+                      x="Residencia", 
+                      y="promedio", 
+                      color="Residencia",
+                      points="all",
+                      title="📊 Distribución comparativa de niveles de ruido",
+    color_discrete_map= {"Alamar": "#D2FF72","Bahía": "#73EC8B "})
+    
+    st.plotly_chart(fig_dist)
+
+with st.expander("📈 Evolución Temporal"):
+    fig_evo = make_subplots(rows=2, cols=1, shared_xaxes=True)
+    fig_evo.add_trace(go.Scatter(x=bahia.groupby('fecha')['promedio'].mean().index,
+                                 y=bahia.groupby('fecha')['promedio'].mean(),
+                                 name="Bahía", line=dict(color='#FFAF00')), row=1, col=1)
+    
+    fig_evo.add_trace(go.Scatter(x=alamar.groupby('fecha')['promedio'].mean().index,
+                                 y=alamar.groupby('fecha')['promedio'].mean(),
+                                 name="Alamar", line=dict(color='#06D001')), row=2, col=1)
+    
+    fig_evo.update_layout(height=600, title_text="📈 Evolución Temporal Comparada", template="plotly_dark")
+    st.plotly_chart(fig_evo, use_container_width=True)

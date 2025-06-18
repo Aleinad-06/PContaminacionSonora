@@ -21,7 +21,7 @@ if mostrar_analisis:
     
     create_map(map_data)
 
-    st.markdown("---")
+    st.divider()
     
     df_ubinombre = df[df["ubicacion"] == "Residencia Estudiantil Bahia"]
     
@@ -40,7 +40,7 @@ con la tarde como el tramo más ruidoso de forma sostenida.
 🎯 Objetivo: Visualizar cómo varían los niveles máximos de decibelios por período del día y
 detectar cuál de ellos tiende a registrar los valores más altos de forma sistemática.""")
     
-    st.markdown("---")
+    st.divider()
     
     plot_peak_noise(df_ubinombre)
     
@@ -55,7 +55,7 @@ detectar cuál de ellos tiende a registrar los valores más altos de forma siste
 🎯 Objetivo: Que el usuario pueda observar con más detalle el comportamiento de los picos sonoros por día, 
 reconociendo cuándo ocurren situaciones inusuales y entendiendo mejor la dinámica real del ruido en su entorno.""")
     
-    st.markdown("---")
+    st.divider()
     
     plot_min_noise_evolution(df_ubinombre)
     st.markdown("""Los niveles mínimos de decibeles se mantienen elevados a lo largo del periodo analizado,
@@ -72,10 +72,10 @@ En resumen, el gráfico evidencia que el ruido es constante y persistente durant
 🎯 Objetivo: Permitir al usuario identificar si existen momentos de verdadero silencio durante el día y
 comprender la persistencia del ruido ambiente, incluso en horarios tradicionalmente más tranquilos.""")
     
-    st.markdown("---")
+    st.divider()
     
     show_summary_metrics(df)
-    st.markdown("---")
+    st.divider()
     
     plot_noise_limits(df)
     
@@ -91,7 +91,7 @@ comprender la persistencia del ruido ambiente, incluso en horarios tradicionalme
     🎯 El objetivo es identificar en qué momentos del día el ambiente fue más ruidoso y si existe algún patrón recurrente de exposición a niveles sonoros potencialmente peligrosos.
     """)
     
-    st.markdown("---")
+    st.divider()
     
     plot_trend_noise(df_ubinombre)
     st.markdown("""
@@ -110,4 +110,4 @@ Y este gráfico me lo confirmó: no hay silencio real… en ningún momento.
 Y la respuesta fue clara: no los hay.
                 """)
     
-    st.markdown("---")
+    st.divider()
