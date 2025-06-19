@@ -6,42 +6,61 @@ from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 
 st.set_page_config(layout="wide")
-rjson = "./data/data.json"
+bahia = "./data/bahia.json"
+alamar = "./data/alamar"
 
-inf = []
+def cargar_datos(ruta_json, nombre_residencia):
+    with open(ruta_json, "r", encoding="utf-8") as file:
+        inf = json.load(file)
 
-with open(rjson, "r", encoding="utf-8") as file:
-    inf = json.load(file)
+    data = []
 
-data = []
+    for i in inf:
 
-for i in inf:
-
-    fecha = i["tiempo"]["fecha"]
-    dia_semana = i["tiempo"]["dia_semana"]
-    nombre_ubicacion = i["ubicacion"]["nombre"]
-    coordenadas = i["ubicacion"]["coordenadas"]
+        fecha = i["tiempo"]["fecha"]
+        dia_semana = i["tiempo"]["dia_semana"]
+        nombre_ubicacion = i["ubicacion"]["nombre"]
+        coordenadas = i["ubicacion"]["coordenadas"]
     
-    for horarios in i["horarios"]:
-        periodo = horarios["periodo"]
-        mediciones = horarios["mediciones"]      
-        data.append(
-            {
-                "fecha": fecha,
-                "dia_semana": dia_semana,
-                "ubicacion": nombre_ubicacion,
-                "coordenadas": coordenadas,
-                "periodo": periodo,
-                "promedio": mediciones["promedio"],
-                "maximo": mediciones["maximo"],
-                "minimo": mediciones["minimo"],
-                "peak": mediciones["peak"]
-            }
-        )
+        for horarios in i["horarios"]:
+            periodo = horarios["periodo"]
+            mediciones = horarios["mediciones"]      
+            data.append(
+                {
+                    "fecha": fecha,
+                    "dia_semana": dia_semana,
+                    "ubicacion": nombre_ubicacion,
+                    "coordenadas": coordenadas,
+                    "periodo": periodo,
+                    "promedio": mediciones["promedio"],
+                    "maximo": mediciones["maximo"],
+                    "minimo": mediciones["minimo"],
+                    "peak": mediciones["peak"]
+                }
+            )
 
-df = pd.DataFrame(data)
+    return pd.DataFrame(data)
+
+df_bahia = cargar_datos(bahia, "Residencia Estudiantil Bahia")
+df_alamar = cargar_datos(alamar, "Residencia Estudiantil Alamar")
+
+df = pd.concat([df_bahia, df_alamar], ignore_index=True)
+
+
 
 st.html("<h1 style= 'color: #E9A319; font-family: Times: text-agoin: center; font-size: 50px'>🌞 Bahía  vs. 🌙 Alamar: Dónde Reside el Ruido❓Serán 🌞 o 🌙 </h1>")
+st.markdown("""Cada decibelio cuenta en nuestra vida académica. 
+        Según la OMS, superar los 55 dB de día o 45 dB de noche no es solo molesto, 
+        sino perjudicial para nuestra salud y rendimiento. 
+        
+Del 2 al 17 de mayo de 2025, medí rigurosamente el ambiente acústico en:
+
+
+    🏢 Residencia Bahía: El corazón vibrante de la vida estudiantil
+
+    🌳 Residencia Alamar: El refugio tradicional de los que buscan tranquilidad
+ 
+Descubrimos patrones que explican por qué muchos llegan cansados a clases.""")
 
 df["fecha"] = pd.to_datetime(df["fecha"])
 
@@ -50,13 +69,15 @@ fecha_final = pd.to_datetime("2025-05-17")
 
 df_filtrado = df[(df["fecha"] >= fecha_inicio) & (df["fecha"] <= fecha_final)]
 
+opcion = st.selectbox("Selecciona que deseas Visualizar", ["maximo", "minimo","peak"])
+
 todo = ["Residencia Estudiantil Alamar", "Residencia Estudiantil Bahia"]
 todos = []
 
 for ubic in todo:
     todos.append(
         df_filtrado[df_filtrado["ubicacion"] == ubic]
-        .groupby(["periodo"])["peak"]
+        .groupby(["periodo"])[opcion]
         .mean()
         .reset_index()
         .assign(ubicacion=ubic)
@@ -65,13 +86,13 @@ for ubic in todo:
 if todos:
     df_final = pd.concat(todos, ignore_index=True)
     
-    st.html("<h2 style='color: #F1EFEC; font-family: Times ; text-align: center'>^_~👌Comportamiento de los picos entre las Residencias</h2>")
+    st.html("<h2 style='color: #C3FF93; font-family: Times ; text-align: center'>^_~👌Comportamiento entre Residencias</h2>")
 
     
     fig = px.bar(
         df_final,
         x="periodo",
-        y="peak",
+        y=opcion,
         color="periodo",
         color_discrete_map={
             "mañana": "#16610E",  
@@ -80,13 +101,12 @@ if todos:
         },
         facet_col="ubicacion"
     )
-    fig.update_xaxes(title_text="Períodos")
+    fig.update_xaxes(title_text=opcion)
 
     fig.for_each_annotation(lambda a: a.update(text=a.text.split("=")[-1]))
 
     fig.update_layout(
-        xaxis_title="Períodos",
-        yaxis_title="Nivel de ruido (dB)",
+        yaxis_title="Nivel de ruido ({opcion}) (dB)",
         legend_title="Período del día",
         template="plotly_white"
     )
@@ -130,7 +150,7 @@ def procesar_residencia(data):
 bahia = procesar_residencia(bahia)
 alamar = procesar_residencia(alamar)
 print(alamar)
-with st.expander("🔍 Análisis Comparativo Completo"):
+with st.expander("🔍 Análisis Comparativo"):
     col1, col2 = st.columns(2)
     
     with col1:

@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 from biblioteca import *
 
-rjson = "./data/data.json"
+rjson = "./data/bahia.json"
 df = load_data(rjson)
 
 show_main_header()

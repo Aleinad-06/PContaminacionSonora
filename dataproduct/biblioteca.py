@@ -117,7 +117,7 @@ def plot_max_noise_evolution(df_ubinombre):
         
         st.html("<h2 style='color: #F1EFEC; font-family: Times ; text-align: center'>Evolución de los Decibelelios Máximo por el Periodo del Día<h2>")
        
-        st.area_chart(
+        st.line_chart(
             df_grafico.set_index("fecha"),
             use_container_width=True,
             color=["#FF9F43", "#FF6B6B", "#48DBFB"],
