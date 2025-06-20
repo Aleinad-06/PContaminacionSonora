@@ -13,7 +13,7 @@ Concientizar a las personas que conviven en la residencia sobre el impacto que t
 - [🎮 **Juego educativo interactivo** donde podrás convertirte en un "detective del ruido".](https://juegoo.streamlit.app)
 - 🎥 **Video explicativo** que narra esta historia con datos, imágenes y soluciones.
 - 🌐 Página web con acceso directo a cada componente del proyecto.
-  
+- [📖 **Storytelling Alamar & Bahía**]()
 🔧 Herramientas utilizadas
 - Python (Pandas, Streamlit)
 - HTML, CSS, JavaScript (para la web)

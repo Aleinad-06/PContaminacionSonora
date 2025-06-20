@@ -6,6 +6,7 @@ from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 
 st.set_page_config(layout="wide")
+
 bahia = "./data/bahia.json"
 alamar = "./data/alamar.json"
 
@@ -209,6 +210,7 @@ with st.expander("🔍 Análisis Comparativo"):
         
         st.plotly_chart(fig_heat_alamar, use_container_width=True)
 
+#--------------------------
 
 with st.expander("📊 Análisis Estadístico Comparativo"):
     st.html("<h1  style='color: #0065F8; font-family: Times ; text-align: center'>Comparación estadística entre <span style='color: #B6F500'>Residencias<span></h1>")
@@ -227,6 +229,8 @@ with st.expander("📊 Análisis Estadístico Comparativo"):
     color_discrete_map= {"Alamar": "#D2FF72","Bahía": "#73EC8B "})
     
     st.plotly_chart(fig_dist)
+
+#-----------------------------
 
 with st.expander("📈 Evolución Temporal"):
     fig_evo = make_subplots(rows=2, cols=1, shared_xaxes=True)
