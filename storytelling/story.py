@@ -142,7 +142,12 @@ bahia = df_filtrado[df_filtrado["ubicacion"] == "Residencia Estudiantil Bahia"].
 alamar = df_filtrado[df_filtrado["ubicacion"] == "Residencia Estudiantil Alamar"].copy()
 
 def procesar_residencia(data):
-    data["dia_semana"] = data["fecha"].dt.day_name(locale='es_ES').str.capitalize()
+    data["dia_semana"] = data["fecha"].dt.day_name().map({
+    "Monday": "Lunes",
+    "Wednesday": "Miércoles",
+    "Friday": "Viernes",
+    "Saturday": "Sábado"
+})
     data["semana"] = data["fecha"].dt.isocalendar().week
     dias_orden = ['Lunes','Miércoles', 'Viernes', 'Sábado']
     data["dia_semana"] = pd.Categorical(data["dia_semana"], categories=dias_orden)
