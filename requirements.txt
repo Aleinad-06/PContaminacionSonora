@@ -1,6 +1,6 @@
-pandas
-matplotlib
-plotly
-folium
-streamlit
-streamlit-folium
+pandas>=1.3
+matplotlib>=3.4
+plotly>=5.3
+folium>=0.12
+streamlit>=1.10
+streamlit-folium>=0.9
