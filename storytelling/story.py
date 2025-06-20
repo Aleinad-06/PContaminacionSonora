@@ -7,7 +7,7 @@ import plotly.graph_objects as go
 
 st.set_page_config(layout="wide")
 bahia = "./data/bahia.json"
-alamar = "./data/alamar"
+alamar = "./data/alamar.json"
 
 def cargar_datos(ruta_json, nombre_residencia):
     with open(ruta_json, "r", encoding="utf-8") as file:
