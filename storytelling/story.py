@@ -49,20 +49,55 @@ df = pd.concat([df_bahia, df_alamar], ignore_index=True)
 
 
 
-st.html("<h1 style= 'color: #E9A319; font-family: Times: text-agoin: center; font-size: 50px'>🌞 Bahía  vs. 🌙 Alamar: Dónde Reside el Ruido❓Serán 🌞 o 🌙 </h1>")
-st.markdown("""Cada decibelio cuenta en nuestra vida académica. 
-        Según la OMS, superar los 55 dB de día o 45 dB de noche no es solo molesto, 
-        sino perjudicial para nuestra salud y rendimiento. 
-        
-Del 2 al 17 de mayo de 2025, medí rigurosamente el ambiente acústico en:
+st.html("<h1 style= 'color: #E9A319; font-family: Times: text-agoin: center; font-size: 50px'>🌞 Bahía  vs. 🌙 Alamar: Dónde Reside el Ruido.❓ Será 🌞 o 🌙 </h1>")
+st.html("""<h3>
+        Durante semanas, estuve rodeada de ruido.
+<br>
+No era nuevo. Estaba ahí desde siempre.
+<br>
+Pero esta vez no lo ignoré.
+<br>
+Esta vez quise escucharlo de verdad.
+<br>
+Con la app en mano y curiosidad a tope, salí a buscarlo.
+<br>
+¿Dónde era más intenso? ¿Cuándo se hacía notar?
+<br>
+Y así comenzó esta historia.
+<br>
+Una historia donde el protagonista es invisible… pero imposible de callar.
+<br><br>
+    <span style= 'color: #00CAFF; font-family: Times  '> - 🏢 Residencia Bahía: Epicentro social con tráfico constante </span>
+<br><br>
+    <span style= 'color: #B0DB9C ; font-family: Times '> - 🌳 Residencia Alamar: Zona residencial alejada del bullicio </span>
+<br><br>
+➡️¿Quiénes son los protagonistas de la novela?
+<br><br>
+👣 Ven 🫴 conmigo y te enseño</h3>""")
 
+st.html("<h2 style= 'color: #E9A319; font-family: Times: text-agoin: center; font-size: 45px'>📊 Hallazgos</h2>")
 
-    🏢 Residencia Bahía: El corazón vibrante de la vida estudiantil
-
-    🌳 Residencia Alamar: El refugio tradicional de los que buscan tranquilidad
- 
-Descubrimos patrones que explican por qué muchos llegan cansados a clases.""")
-
+st.html("""<h3>
+            ¿Cuándo hace más escándalo? – El momento del caos 
+    <br><br>
+    El día apenas empieza y ya el Ruido está en modo DJ.
+    <br>
+    En la Residencia Bahía, la mañana fue el horario más ruidoso.
+    <br>
+    Justo cuando uno solo quiere cinco minutos más de sueño…
+    <br>
+    los decibeles se disparan como si fuera carnaval.
+    <br><br>
+    Incluso el pico de ruido más alto registrado ocurrió en plena mañana.
+    <br>
+    No, no fue de noche.
+    <br>
+    Y no, no había fiesta.
+    <br>
+    Era la rutina diaria.
+    <br><br>
+    Así que si pensabas que estabas exagerando al quejarte… no. Tenías razón.
+            </h3>""")
 df["fecha"] = pd.to_datetime(df["fecha"])
 
 fecha_inicio = pd.to_datetime("2025-05-02")
@@ -114,35 +149,37 @@ if todos:
 
     st.plotly_chart(fig)
 
-st.markdown("""
-            🔎 ¿Qué estamos viendo aquí?
-
-Este gráfico compara los niveles de ruido registrados en dos lugares clave durante el mismo período de tiempo:
-📍 Alamar y 📍 la Residencia Estudiantil Bahía.
-
-La medición en Alamar se hizo cerca de la beca que está allá, o sea, bastante cerca del entorno donde viven estudiantes también.
-
-La idea fue tomar 10 días (del 2 al 17 de mayo de 2025) y mirar cómo se comporta el ruido en esos lugares durante tres momentos del día:
-🌅 mañana, ☀️ tarde y 🌙 noche.
-
-🎯 Mi objetivo fue ver cómo se comporta el ruido en estos dos lugares durante el día.
-Quería responder preguntas como:
-
-— ¿Dónde hay más ruido?
-
-— ¿Hay momentos más críticos en alguna de las dos ubicaciones?
-
-💥 En resumen, busco entender cómo el entorno sonoro afecta la vida cotidiana, especialmente en lugares donde vivimos estudiantes.
-                """)
 st.divider()
         
 #---------------------
+
+st.html("""<h3>
+🌐 Dos mundos sonoros
+<br><br>
+También medí en Alamar, para comparar.
+<br> 
+Y ahí me di cuenta de algo curioso:
+<br> 
+el ruido también tiene personalidad.
+<br><br>
+<span style='color: #00CAFF; font-family: Times'>🔊 En Bahía, el sonido es intenso, persistente, casi desafiante.</span>
+<br> 
+<span style='color: #B0DB9C; font-family: Times'>🔈 En Alamar, en cambio, el ambiente es más relajado.</span>
+<br><br>
+Sí, hay ruidos, pero parecen pedir permiso.
+<br>
+Nada que ver con la Bahía, donde el Ruido entra como si fuera su casa. 🏠💥
+<br>
+📉 Los números lo confirman: <strong>promedios más bajos, menos picos extremos</strong>,
+<br> 
+y hasta momentos en los que se podía respirar algo parecido al silencio. 😌
+</h3>""")
+
 
 bahia = df_filtrado[df_filtrado["ubicacion"] == "Residencia Estudiantil Bahia"].copy()
 alamar = df_filtrado[df_filtrado["ubicacion"] == "Residencia Estudiantil Alamar"].copy()
 
 def procesar_residencia(data):
-    # Método más robusto para obtener nombres de días en español
     data["dia_semana"] = data["fecha"].dt.strftime('%A')
     dias_traduccion = {
         'Monday': 'Lunes',
@@ -253,3 +290,86 @@ with st.expander("📈 Evolución Temporal"):
     
     fig_evo.update_layout(height=600, title_text="📈 Evolución Temporal Comparada", template="plotly_dark")
     st.plotly_chart(fig_evo, use_container_width=True)
+
+st.html("""<h3>
+📏 Las reglas que no se cumplen
+<br><br>
+Hay un límite saludable de ruido para vivir: 
+<span style='color: #00CAFF; font-family: Times'>📉 55 decibelios según la OMS</span>.
+<br>
+<span style='color: red; font-family: Times'>🚨 Spoiler: no lo respetamos.</span>
+<br>
+Día tras día, medí niveles que superaban los 60,
+<br>
+y más de una vez… <span style='color: yellow; font-family: Times'>⚠️ se disparaban por encima de los 70.</span>
+<br><br>
+Niveles que no solo afectan el descanso 😴,
+<br>
+sino también la salud mental 🧠, la concentración 🎯 y el rendimiento académico 📚.
+<br><br>
+Y hasta ahora, lo dejábamos pasar como si no existiera. 🙈
+</h3>""")
+
+
+st.html("""<h3>
+<span style='color: #E9A319; font-family: Times; font-size: 50px'>🧏 Escuchar también es actuar</span>
+<br><br>
+
+📊 Medirlo fue solo el primer paso.
+<br>
+Después vinieron los gráficos, el juego, la historia...
+<br>
+Todo para que el Ruido —ese que a veces se siente pero no se ve— tuviera por fin rostro, cifras y voz.
+<br><br>
+
+🎙️ Porque no se trata solo de "ruido molesto".
+<br>
+Estamos hablando de un enemigo cotidiano que afecta cómo dormimos, cómo pensamos, cómo vivimos.
+<br><br>
+
+👂 Yo aprendí a escucharlo de verdad, no solo a soportarlo.
+<br>
+Aprendí que el exceso de decibeles no solo perturba, también desgasta.
+<br>
+Y cuando el ruido se vuelve rutina, sus efectos se vuelven invisibles... pero permanentes.
+<br><br>
+
+😵‍💫 Ansiedad. 😓 Falta de concentración. 💤 Sueño interrumpido.
+<br>
+Y lo peor: normalizamos todo eso.
+<br><br>
+
+Pero cuando lo medimos, lo graficamos, lo comparamos…
+<br>
+dejó de ser una queja para convertirse en evidencia.
+<br><br>
+
+👩‍💻 Este proyecto es mi forma de hacer visible lo que muchos ya intuían.
+<br>
+Un intento de decir: “mira, no es solo percepción… está pasando y aquí están los datos que lo prueban”.
+<br><br>
+
+🌍 No es un lujo hablar de contaminación sonora. Es una necesidad.
+<br>
+No necesitamos vivir en completo silencio, pero sí con respeto al descanso de los demás.
+<br>
+Con conciencia de que cada bocina, cada motor, cada grito... suma.
+<br><br>
+
+Y si llegaste hasta aquí, ya diste el primer paso. 🚶‍♀️
+<br>
+Ahora, te invito a dar el siguiente: 
+escuchar con más intención, actuar con más empatía, y hablar del ruido sin miedo.
+<br><br>
+
+Porque el Ruido no se detiene solo...<br>
+pero sí podemos aprender a bajarle el volumen.
+<br><br>
+
+🎧 Gracias por escuchar. Literalmente.
+</h3>""")
+
+
+
+
+

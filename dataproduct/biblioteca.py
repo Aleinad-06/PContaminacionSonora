@@ -139,7 +139,6 @@ def plot_peak_noise(df_ubinombre):
     audio = open("./musica/camion-de-bomberos.mp3", "rb")
     st.audio(audio.read(), format="audio/mp3")
     
-    st.html("<h4>Sonido del portazo</h4>")
 
 def plot_min_noise_evolution(df_ubinombre):
     """Grafica la evolución de los decibelios mínimos por período"""

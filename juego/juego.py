@@ -12,7 +12,7 @@ st.image(image, caption="(●'◡'●)Creemos Conciencia")
 
 # ----------------------
 
-with open("./data/data.json", "r", encoding="utf-8") as f:
+with open("./data/bahia.json", "r", encoding="utf-8") as f:
     inf = json.load(f)
 
 data = []

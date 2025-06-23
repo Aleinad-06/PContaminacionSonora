@@ -9,15 +9,16 @@ Concientizar a las personas que conviven en la residencia sobre el impacto que t
 
 🧰 ¿Qué encontrarás aquí?
 
-- 📊 **Análisis de datos reales** sobre el ruido en la residencia.
+- [🌐 Página web con acceso directo a cada componente del proyecto.](https://p-contaminacion-sonora.vercel.app/)
+- [📊 **Análisis de datos reales** sobre el ruido en la residencia.](https://aleinad-06-pcontaminacionsonora-dataproductmain-cxtmeq.streamlit.app/)
+- [🎥 **Video explicativo** que narra esta historia con datos, imágenes y soluciones.](https://youtu.be/4OHmNttj0Vc)
 - [🎮 **Juego educativo interactivo** donde podrás convertirte en un "detective del ruido".](https://juegoo.streamlit.app)
-- 🎥 **Video explicativo** que narra esta historia con datos, imágenes y soluciones.
-- 🌐 Página web con acceso directo a cada componente del proyecto.
-- [📖 **Storytelling Alamar & Bahía**]()
+- [📖 **Storytelling Alamar & Bahía**](https://aleinad-06-pcontaminacionsonora-storytellingstory-kxiq35.streamlit.app/)
+
 🔧 Herramientas utilizadas
-- Python (Pandas, Streamlit)
+- Python (Pandas, Streamlit, Matplotlib)
 - HTML, CSS, JavaScript (para la web)
-- CapCut (para edición del video)
+- Canvas (para edición del video)
 
 👁️‍🗨️ Mi llamado es :
 
