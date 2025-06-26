@@ -83,6 +83,7 @@ def plot_daily_noise(df, date):
         st.image(image, use_container_width=True)
 
         st.divider()
+        
         st.markdown("🧩 ¿Te sorprendió lo que viste? Este es solo **un día** en la vida sonora de la residencia. "
                     "Imagina todo lo que podríamos descubrir si más personas se suman a escuchar el entorno.")
         st.markdown("👉 Sigue explorando el ruido. ¡La ciencia también se escucha!")
@@ -90,7 +91,7 @@ def plot_daily_noise(df, date):
         st.warning("⚠️ No hay datos para la fecha seleccionada. Solo están disponibles: Lunes, Miércoles, Viernes y Sábado.")
 
 def create_map(data):
-    """Crea un mapa con las ubicaciones de los sensores"""
+    """Crea un mapa con las ubicaciones"""
     maps = []
     for ubimap in data:
         maps.append({

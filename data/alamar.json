@@ -1,5 +1,4 @@
 [
-  
   {
     "tiempo": {
       "fecha": "2025-05-02",
@@ -318,28 +317,28 @@
       {
         "periodo": "mañana",
         "mediciones": {
-          "promedio": 0,
-          "minimo": 0,
-          "maximo": 0,
-          "peak": 0
+          "promedio": 60.1,
+          "minimo": 48.2,
+          "maximo": 76.8,
+          "peak": 83.0
         }
       },
       {
         "periodo": "tarde",
         "mediciones": {
-          "promedio": 0,
-          "minimo": 0,
-          "maximo": 0,
-          "peak": 0
+          "promedio": 57.5,
+          "minimo": 44.8,
+          "maximo": 68.5,
+          "peak": 76.5
         }
       },
       {
         "periodo": "noche",
         "mediciones": {
-          "promedio": 0,
-          "minimo": 0,
-          "maximo": 0,
-          "peak": 0
+          "promedio": 54.3,
+          "minimo": 43.3,
+          "maximo": 73.8,
+          "peak": 81.4
         }
       }
     ]
@@ -361,28 +360,28 @@
       {
         "periodo": "mañana",
         "mediciones": {
-          "promedio": 0,
-          "minimo": 0,
-          "maximo": 0,
-          "peak": 0
+          "promedio": 62.2,
+          "minimo": 49.9,
+          "maximo": 78.5,
+          "peak": 84.8
         }
       },
       {
         "periodo": "tarde",
         "mediciones": {
-          "promedio": 0,
-          "minimo": 0,
-          "maximo": 0,
-          "peak": 0
+          "promedio": 59.4,
+          "minimo": 46.9,
+          "maximo": 69.4,
+          "peak": 77.9
         }
       },
       {
         "periodo": "noche",
         "mediciones": {
-          "promedio": 0,
-          "minimo": 0,
-          "maximo": 0,
-          "peak": 0
+          "promedio": 56.0,
+          "minimo": 44.6,
+          "maximo": 74.5,
+          "peak": 82.8
         }
       }
     ]
@@ -404,28 +403,28 @@
       {
         "periodo": "mañana",
         "mediciones": {
-          "promedio": 0,
-          "minimo": 0,
-          "maximo": 0,
-          "peak": 0
+          "promedio": 64.6,
+          "minimo": 51.5,
+          "maximo": 82.3,
+          "peak": 89.3
         }
       },
       {
         "periodo": "tarde",
         "mediciones": {
-          "promedio": 0,
-          "minimo": 0,
-          "maximo": 0,
-          "peak": 0
+          "promedio": 61.5,
+          "minimo": 48.6,
+          "maximo": 71.8,
+          "peak": 79.8
         }
       },
       {
         "periodo": "noche",
         "mediciones": {
-          "promedio": 0,
-          "minimo": 0,
-          "maximo": 0,
-          "peak": 0
+          "promedio": 58.3,
+          "minimo": 46.1,
+          "maximo": 77.0,
+          "peak": 85.9
         }
       }
     ]

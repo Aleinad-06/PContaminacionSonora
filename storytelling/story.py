@@ -103,7 +103,7 @@ df["fecha"] = pd.to_datetime(df["fecha"])
 fecha_inicio = pd.to_datetime("2025-05-02")
 fecha_final = pd.to_datetime("2025-05-17")
 
-df_filtrado = df[(df["fecha"] >= fecha_inicio) & (df["fecha"] <= fecha_final)]
+df_filtrado = df[df["fecha"].between(fecha_inicio, fecha_final)]
 
 opcion = st.selectbox("Selecciona que deseas Visualizar", ["maximo", "minimo","peak"])
 
@@ -260,8 +260,8 @@ with st.expander("🔍 Análisis Comparativo"):
 
 with st.expander("📊 Análisis Estadístico Comparativo"):
     st.html("<h1  style='color: #0065F8; font-family: Times ; text-align: center'>Comparación estadística entre <span style='color: #B6F500'>Residencias<span></h1>")
-    stats_bahia = bahia['promedio'].describe().rename('Bahía').agg(["count","mean", "min", "50%", "max"])
-    stats_alamar = alamar['promedio'].describe().rename('Alamar').agg(["count","mean", "min", "50%", "max"])
+    stats_bahia = bahia['promedio'].describe().rename('Bahía').agg(["mean", "min", "50%", "max"])
+    stats_alamar = alamar['promedio'].describe().rename('Alamar').agg(["mean", "min", "50%", "max"])
     stats_comparativas = pd.concat([stats_bahia, stats_alamar], axis=1)
     st.dataframe(stats_comparativas.style.format("{:.2f}").background_gradient(cmap='Blues'))
 
